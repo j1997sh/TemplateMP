@@ -256,6 +256,13 @@
     storageSet(areaKey);
     const url = new URL(window.location.href);
     url.searchParams.set("area", areaKey);
+
+    const file = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    if(file === "your-area.html"){
+      window.location.href = url.toString();
+      return;
+    }
+
     try { history.replaceState({}, "", url); } catch(e) {}
     applyArea(areaKey);
   }
