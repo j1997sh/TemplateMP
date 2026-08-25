@@ -788,6 +788,81 @@ footer a{
   .area-form .btn{width:100%}
 }
 
+
+/* Personalised homepage local hub */
+.home-local-hub{
+  display:none;
+  background:#f4f8fd;
+  padding:42px 0;
+}
+.home-local-hub.visible{display:block}
+.home-local-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:24px;
+  margin-bottom:24px;
+}
+.home-local-head h2{
+  margin:0 0 6px;
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-.045em;
+}
+.home-local-head p{margin:0;color:#667085;font-size:16px}
+.home-local-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.home-local-card{
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+  border:1px solid #dfe5ed;
+  min-width:0;
+}
+.home-local-card-image{
+  width:100%;
+  aspect-ratio:1.55/1;
+  background-size:cover;
+  background-position:center;
+}
+.home-local-card-body{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  padding:18px;
+}
+.home-local-card .eyebrow{
+  margin:0 0 8px;
+  color:#0b67c6;
+  font-size:12px;
+  font-weight:900;
+}
+.home-local-card h3{
+  margin:0 0 8px;
+  color:#08254a;
+  font-size:24px;
+  line-height:1.04;
+  letter-spacing:-.025em;
+}
+.home-local-card p{
+  margin:0 0 18px;
+  color:#667085;
+  font-size:14px;
+  line-height:1.45;
+}
+.home-local-card .btn{
+  margin-top:auto;
+  width:max-content;
+}
+@media(max-width:800px){
+  .home-local-head{display:block}
+  .home-local-head .btn{margin-top:14px}
+  .home-local-grid{grid-template-columns:1fr}
+}
+
 </style>
 
 <style>
@@ -828,7 +903,7 @@ footer a{
     </nav>
 
     <div class="header-actions">
-      <a href="preferences.html" class="header-box signup">Sign up</a>
+      <a href="sign-up.html" class="header-box signup">Sign up</a>
       <a href="get-help.html" class="header-box help-button">Get help</a>
     </div>
 
@@ -859,7 +934,7 @@ footer a{
     <a href="donate.html">Donate</a>
   </nav>
   <div class="mobile-nav-actions">
-    <a href="preferences.html" class="header-box signup">Sign up</a>
+    <a href="sign-up.html" class="header-box signup">Sign up</a>
     <a href="get-help.html" class="header-box help-button">Get help</a>
   </div>
 </div>
@@ -904,31 +979,51 @@ footer a{
   </div>
 </section>
 
+
 <section class="home-local-hub" id="homeLocalHub">
   <div class="container">
     <div class="home-local-head">
       <div>
         <h2 id="homeLocalTitle">Your area</h2>
-        <p id="homeLocalIntro">Local news, campaigns and events selected for you.</p>
+        <p id="homeLocalIntro">One local story, one campaign and the next event near you.</p>
       </div>
       <a class="btn navy" id="homeLocalHubLink" href="your-area.html">Open your local hub</a>
     </div>
+
     <div class="home-local-grid">
       <article class="home-local-card">
         <div class="home-local-card-image" id="homeLocalNewsImage"></div>
-        <div class="home-local-card-body"><div class="eyebrow">Latest local story</div><h3 id="homeLocalNewsTitle"></h3><p id="homeLocalNewsText"></p><a class="btn navy" href="news.html">Read more</a></div>
+        <div class="home-local-card-body">
+          <div class="eyebrow">Latest local story</div>
+          <h3 id="homeLocalNewsTitle">Local news</h3>
+          <p id="homeLocalNewsText"></p>
+          <a class="btn navy" href="news.html">Read more</a>
+        </div>
       </article>
+
       <article class="home-local-card">
         <div class="home-local-card-image" id="homeLocalCampaignImage"></div>
-        <div class="home-local-card-body"><div class="eyebrow">Local campaign</div><h3 id="homeLocalCampaignTitle"></h3><p id="homeLocalCampaignText"></p><a class="btn navy" id="homeLocalCampaignLink" href="campaigns.html">Back campaign</a></div>
+        <div class="home-local-card-body">
+          <div class="eyebrow">Local campaign</div>
+          <h3 id="homeLocalCampaignTitle">Local campaign</h3>
+          <p id="homeLocalCampaignText"></p>
+          <a class="btn navy" id="homeLocalCampaignLink" href="campaigns.html">Back campaign</a>
+        </div>
       </article>
+
       <article class="home-local-card">
         <div class="home-local-card-image" id="homeLocalEventImage"></div>
-        <div class="home-local-card-body"><div class="eyebrow">Next local event</div><h3 id="homeLocalEventTitle"></h3><p id="homeLocalEventText"></p><a class="btn navy" id="homeLocalEventLink" href="events.html">View event</a></div>
+        <div class="home-local-card-body">
+          <div class="eyebrow">Next local event</div>
+          <h3 id="homeLocalEventTitle">Local event</h3>
+          <p id="homeLocalEventText"></p>
+          <a class="btn navy" id="homeLocalEventLink" href="events.html">View event</a>
+        </div>
       </article>
     </div>
   </div>
 </section>
+
 
 
 <section class="intro" id="about">

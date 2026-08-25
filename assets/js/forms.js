@@ -401,3 +401,45 @@
     });
   });
 })();
+
+
+/* ---- proper sign-up page ---- */
+(function(){
+  const form=document.getElementById("signupForm");
+  if(!form) return;
+
+  const names={"town-centre":"Bloggs Town Centre","north-bloggs":"North Bloggs","little-bloggs":"Little Bloggs","villages":"The Villages"};
+  let area="";
+  try{area=sessionStorage.getItem("joeArea")||""}catch(e){}
+  if(names[area]){
+    const heading=document.getElementById("signupHeading");
+    const intro=document.getElementById("signupIntro");
+    const title=document.getElementById("signupLocalTitle");
+    const copy=document.getElementById("signupLocalText");
+    if(heading) heading.textContent="Get updates from "+names[area];
+    if(intro) intro.textContent="Choose the updates you want, including news specifically from "+names[area]+".";
+    if(title) title.textContent="Updates from "+names[area];
+    if(copy) copy.textContent="News, campaigns and events specifically relevant to "+names[area]+".";
+  }
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    const data=new FormData(form);
+    const prefs={
+      local:!!data.get("local"),
+      campaigns:!!data.get("campaigns"),
+      events:!!data.get("events"),
+      monthly:!!data.get("monthly")
+    };
+    try{
+      sessionStorage.setItem("joePreferences",JSON.stringify(prefs));
+      sessionStorage.setItem("joeSignedUp","yes");
+    }catch(e){}
+    const thanks=document.getElementById("signupThanks");
+    const copy=document.getElementById("signupThanksText");
+    if(copy && names[area]) copy.textContent="We’ll prioritise the updates you selected for "+names[area]+".";
+    if(thanks) thanks.classList.add("visible");
+    const button=form.querySelector('button[type="submit"]');
+    if(button){button.textContent="Signed up";button.disabled=true;}
+  });
+})();

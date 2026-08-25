@@ -3,24 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Donate | Joe Bloggs MP</title>
+<title>Sign up | Joe Bloggs MP</title>
 <link rel="stylesheet" href="assets/css/shared.css">
-
-<style>
-/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
-.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
-.mobile-nav.open{display:block}
-.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
-.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
-.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
-.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
-@media(min-width:1101px){.mobile-nav{display:none!important}}
-@media(max-width:1100px){
-  .site-header .nav{display:none!important}
-  .menu-button{display:block!important}
-}
-</style>
-
 </head>
 <body>
 <header class="site-header">
@@ -50,7 +34,6 @@
     <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
   </div>
 </header>
-
 <div class="area-status" id="areaStatus">
   <div class="container area-status-inner">
     <div>Showing local content for <strong id="areaStatusName"></strong></div>
@@ -60,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <div class="mobile-nav" id="mobileNav">
   <nav>
     <a href="index.html">Home</a>
@@ -78,36 +60,71 @@
     <a href="get-help.html" class="header-box help-button">Get help</a>
   </div>
 </div>
-<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=2000&q=85')">
-  <div class="container"><div><h1>Support Joe’s local campaign</h1><p>Help Joe keep campaigning, communicating and organising across Bloggs Town.</p></div></div>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container">
+    <div>
+      <h1>Stay in touch with Joe</h1>
+      <p>Get useful local updates, campaign news and invitations to events across Bloggs Town.</p>
+    </div>
+  </div>
 </section>
 
 <section class="section">
   <div class="container two-col">
     <div>
-      <h2>Support Joe’s work in Bloggs Town</h2>
-      <p class="lead">Donations help fund local campaigning, printed materials, digital communications and community outreach.</p>
-      <p>This demo keeps the donation journey simple and separate from Joe’s parliamentary casework. In a live political site, the final wording, compliance fields and payment flow would be configured for the relevant political organisation.</p>
+      <h2 id="signupHeading">Get updates from Joe</h2>
+      <p class="lead" id="signupIntro">Tell us where you live and what you want to hear about. You can change these choices at any time.</p>
+
+      <form class="form-grid" id="signupForm">
+        <input name="first_name" placeholder="First name" autocomplete="given-name">
+        <input name="last_name" placeholder="Second name" autocomplete="family-name">
+        <input class="full" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input class="full" name="postcode" id="signupPostcode" placeholder="Postcode" autocomplete="postal-code" required>
+
+        <div class="full preference-grid" style="margin:10px 0 2px">
+          <div class="preference-option">
+            <input type="checkbox" id="signupLocal" name="local" checked>
+            <label for="signupLocal"><strong id="signupLocalTitle">Local updates</strong><span id="signupLocalText">News and activity from your part of Bloggs Town.</span></label>
+          </div>
+          <div class="preference-option">
+            <input type="checkbox" id="signupCampaigns" name="campaigns">
+            <label for="signupCampaigns"><strong>Campaigns</strong><span>Local campaigns and opportunities to have your say.</span></label>
+          </div>
+          <div class="preference-option">
+            <input type="checkbox" id="signupEvents" name="events">
+            <label for="signupEvents"><strong>Events</strong><span>Surgeries, meetings and events near you.</span></label>
+          </div>
+          <div class="preference-option">
+            <input type="checkbox" id="signupMonthly" name="monthly" checked>
+            <label for="signupMonthly"><strong>Joe’s monthly update</strong><span>A regular constituency-wide roundup from Joe.</span></label>
+          </div>
+        </div>
+
+        <label class="full action-consent">
+          <input type="checkbox" name="consent" required>
+          <span>Yes, I’m happy to receive the updates I’ve selected from Joe Bloggs.</span>
+        </label>
+
+        <button class="btn full" type="submit">Sign me up</button>
+        <div class="context-survey-result full" id="signupThanks">
+          <strong>Thanks — you’re signed up.</strong>
+          <span id="signupThanksText">We’ll keep your updates relevant to the choices you made.</span>
+        </div>
+      </form>
+
+      <p class="form-note">Demo front-end only. In NationBuilder this would create or update the supporter record, area tag and email preferences.</p>
     </div>
-    <form>
-      <div class="form-grid">
-        <input placeholder="First name"><input placeholder="Second name">
-        <input class="full" type="email" placeholder="Email address">
-        <input class="full" placeholder="Postcode">
-        <select class="full"><option>Select an amount</option><option>£10</option><option>£25</option><option>£50</option><option>£100</option><option>Other amount</option></select>
-        <button class="btn">Continue to donate</button>
+
+    <div>
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1200&q=85')"></div>
+      <div class="local-recommendation" style="margin-top:18px">
+        <div>
+          <h3>Already signed up?</h3>
+          <p>Change which updates you receive at any time.</p>
+        </div>
+        <a class="btn navy" href="preferences.html">Email preferences</a>
       </div>
-      <p class="form-note">Demo only — no payment is taken.</p>
-    </form>
-  </div>
-</section>
-<section class="section alt">
-  <div class="container">
-    <h2>What your support helps fund</h2>
-    <div class="grid-3">
-      <div class="card"><h3>Local campaigning</h3><p>Leaflets, surveys and materials that help Joe communicate with residents across the constituency.</p></div>
-      <div class="card"><h3>Events and outreach</h3><p>Helping run public meetings, local events and opportunities for residents to get involved.</p></div>
-      <div class="card"><h3>Digital communications</h3><p>Keeping local people informed through the website, email and online campaigning.</p></div>
     </div>
   </div>
 </section>
@@ -128,8 +145,6 @@
     <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
   </div>
 </footer>
-
-
 <script>
 (function () {
   function initMobileMenu() {
@@ -161,7 +176,7 @@
   }
 })();
 </script>
-
-<script src="assets/js/personalisation.js?v=24"></script>
+<script src="assets/js/personalisation.js?v=27"></script>
+<script src="assets/js/forms.js?v=27"></script>
 </body>
 </html>
