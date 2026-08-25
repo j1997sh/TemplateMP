@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your area | Joe Bloggs MP</title>
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
+.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
+.mobile-nav.open{display:block}
+.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
+.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
+.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
+.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
+@media(min-width:1101px){.mobile-nav{display:none!important}}
+@media(max-width:1100px){
+  .site-header .nav{display:none!important}
+  .menu-button{display:block!important}
+}
+</style>
+
+
+<style>
+/* Your Area view switching */
+.area-page #areaPersonalised,
+.area-page #areaNewsSection,
+.area-page #areaCampaignsSection,
+.area-page #areaEventsSection{display:none}
+.area-page.area-personalised #areaGeneric,
+.area-page.area-personalised #areaChooser{display:none!important}
+.area-page.area-personalised #areaPersonalised,
+.area-page.area-personalised #areaNewsSection,
+.area-page.area-personalised #areaCampaignsSection,
+.area-page.area-personalised #areaEventsSection{display:block!important}
+.area-page.area-generic #areaGeneric,
+.area-page.area-generic #areaChooser{display:block}
+</style>
+
+</head>
+<body class="area-page area-generic">
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">JB</span>
+      <span class="logo-copy"><strong>Joe Bloggs</strong><span>MP for Bloggs Town</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Joe</a>
+      <a href="your-area.html">Your area</a>
+      <a href="our-plan.html">Our plan</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="events.html">Events</a>
+      <a href="news.html">News</a>
+      <a href="have-your-say.html">Have your say</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="have-your-say.html" class="header-box signup">Sign up</a>
+      <a href="get-help.html" class="header-box help-button">Get help</a>
+    </div>
+
+    <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  </div>
+</header>
+
+<div class="area-status" id="areaStatus">
+  <div class="container area-status-inner">
+    <div>Showing local content for <strong id="areaStatusName"></strong></div>
+    <div class="area-status-actions">
+      <button type="button" id="changeAreaButton">Change area</button>
+      <button type="button" id="dismissAreaButton" class="dismiss-area" aria-label="Turn off personalisation" title="Turn off personalisation">×</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Joe</a>
+    <a href="your-area.html">Your area</a>
+    <a href="our-plan.html">Our plan</a>
+    <a href="campaigns.html">Campaigns</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="have-your-say.html">Have your say</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <a href="have-your-say.html" class="header-box signup">Sign up</a>
+    <a href="get-help.html" class="header-box help-button">Get help</a>
+  </div>
+</div>
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>Joe in your area</h1><p>See what Joe is doing in your part of Bloggs Town and what local residents are raising with him.</p></div></div>
+</section>
+<section class="section" id="areaGeneric"><div class="container two-col"><div><h2>Find what Joe is doing near you</h2><p class="lead">Enter your postcode or choose your part of the constituency to see local news, visits, campaigns and upcoming surgeries.</p><div class="form-grid"><input class="full" id="areaInput" placeholder="Enter your postcode or town"><button class="btn" id="areaButton" type="button">Find my area</button></div><p class="form-note">Demo postcodes: BG1, BG2, BG3 or BG4.</p></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=85')"></div></div></section>
+<section class="section alt" id="areaChooser"><div class="container"><h2>Across Bloggs Town</h2><div class="grid-4"><button class="image-card area-choice" type="button" data-set-area="town-centre" style="border:0;text-align:left;background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=82')"><h3>Bloggs Town Centre</h3><p>High street, transport and town centre regeneration.</p><span class="btn white">View area</span></button><button class="image-card area-choice" type="button" data-set-area="north-bloggs" style="border:0;text-align:left;background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=82')"><h3>North Bloggs</h3><p>Healthcare, neighbourhood safety and community facilities.</p><span class="btn white">View area</span></button><button class="image-card area-choice" type="button" data-set-area="little-bloggs" style="border:0;text-align:left;background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=82')"><h3>Little Bloggs</h3><p>Roads, buses, planning and local services.</p><span class="btn white">View area</span></button><button class="image-card area-choice" type="button" data-set-area="villages" style="border:0;text-align:left;background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=82')"><h3>The Villages</h3><p>Rural transport, local services and village roads.</p><span class="btn white">View area</span></button></div></div></section>
+
+<section class="section" id="areaPersonalised">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <h2 id="areaPageTitle">Your local area</h2>
+        <p class="lead" id="areaPageIntro"></p>
+        <div class="local-recommendation" style="margin-top:24px">
+          <div><h3 id="areaFocusTitle">What Joe is focused on locally</h3><p id="areaFocusText"></p></div>
+          <a class="btn" href="have-your-say.html">Tell Joe what matters</a>
+        </div>
+      </div>
+      <div class="photo" id="areaPageImage"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="areaNewsSection">
+  <div class="container">
+    <div class="local-hub-heading">
+      <div><h2 id="areaNewsHeading">Latest local news</h2><p id="areaNewsIntro"></p></div>
+      <a class="btn navy" href="news.html">All local news</a>
+    </div>
+    <div class="grid-3" id="areaNewsCards"></div>
+  </div>
+</section>
+
+<section class="section" id="areaCampaignsSection">
+  <div class="container">
+    <div class="local-hub-heading">
+      <div><h2 id="areaCampaignsHeading">Campaigns near you</h2><p id="areaCampaignsIntro"></p></div>
+      <a class="btn navy" href="campaigns.html">All campaigns</a>
+    </div>
+    <div class="grid-3" id="areaCampaignCards"></div>
+  </div>
+</section>
+
+<section class="section alt" id="areaEventsSection">
+  <div class="container">
+    <div class="local-hub-heading">
+      <div><h2 id="areaEventsHeading">What’s happening locally</h2><p id="areaEventsIntro"></p></div>
+      <a class="btn navy" href="events.html">All events</a>
+    </div>
+    <div class="grid-3" id="areaEventCards"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff">
+          <span class="logo-mark">JB</span>
+          <span class="logo-copy"><strong>Joe Bloggs</strong><span style="color:#b8c7d8">MP for Bloggs Town</span></span>
+        </div>
+      </div>
+      <div><h4>Joe</h4><a href="about.html">About Joe</a><a href="our-plan.html">Our plan</a><a href="campaigns.html">Campaigns</a><a href="news.html">News</a></div>
+      <div><h4>Bloggs Town</h4><a href="your-area.html">Your area</a><a href="events.html">Events</a><a href="news.html">Local updates</a><a href="have-your-say.html">Residents survey</a></div>
+      <div><h4>Get involved</h4><a href="get-help.html">Get help</a><a href="get-help.html#surgeries">Surgeries</a><a href="donate.html">Donate</a><a href="get-help.html#contact">Contact</a></div>
+    </div>
+    <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  function initMobileMenu() {
+    var button = document.getElementById('menuButton');
+    var menu = document.getElementById('mobileNav');
+    if (!button || !menu || button.dataset.menuReady === 'true') return;
+
+    button.dataset.menuReady = 'true';
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var open = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.textContent = open ? 'Close' : 'Menu';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = 'Menu';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  var known = "";
+  try { known = sessionStorage.getItem("joeArea") || ""; } catch(e) {}
+  var valid = ["town-centre","north-bloggs","little-bloggs","villages"];
+  if (valid.indexOf(known) !== -1) {
+    document.body.classList.remove("area-generic");
+    document.body.classList.add("area-personalised");
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  const AREAS = {
+    "town-centre": {
+      name:"Bloggs Town Centre",
+      intro:"Joe is working with residents, traders and community organisations across Bloggs Town Centre on the high street, local services, safety and transport.",
+      focus:"High street renewal, town-centre safety and better transport connections.",
+      hero:"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1400&q=85",
+      news:[
+        ["Joe meets traders on Bloggs Town high street","Businesses raise empty units, parking and the cost of investing in the town centre.","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=84"],
+        ["New push to bring empty units back into use","Joe is calling for practical action to support a busier, stronger town centre.","https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=84"],
+        ["Residents raise late-night antisocial behaviour","Joe has asked local police and the council to look at repeat problem spots.","https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=84"]
+      ],
+      campaigns:[
+        ["Bring empty shops back into use","Practical action on vacant units in Bloggs Town Centre.","campaign-high-street.html","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=84"],
+        ["Back our town centre businesses","Support local traders and make the centre easier to visit and invest in.","campaign-local-business.html","https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=84"],
+        ["Safer evenings in the town centre","Back targeted action on persistent antisocial behaviour.","campaign-safer-streets.html","https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=84"]
+      ],
+      events:[
+        ["Joe’s town-centre surgery","Friday 11 September · Bloggs Town Library","event-town-centre-surgery.html","https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=900&q=84"],
+        ["Bloggs Town business roundtable","Monday 21 September · Bloggs Business Centre","event-business-roundtable.html","https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=84"],
+        ["High street open meeting","Tuesday 13 October · Town Hall","event-north-residents-meeting.html","https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=84"]
+      ]
+    },
+    "north-bloggs": {
+      name:"North Bloggs",
+      intro:"Joe is focused on healthcare, neighbourhood safety, schools and community facilities across North Bloggs.",
+      focus:"GP access, neighbourhood policing and safer routes around local schools.",
+      hero:"https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1400&q=85",
+      news:[
+        ["Joe presses for more GP appointments in North Bloggs","Residents say access to appointments remains one of their biggest local concerns.","https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=84"],
+        ["North Bloggs walkabout focuses on neighbourhood safety","Joe joins residents to hear concerns about antisocial behaviour and visible policing.","https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=84"],
+        ["School crossing concerns raised by North Bloggs parents","Joe is pressing for a review of safety around a busy local school route.","https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=84"]
+      ],
+      campaigns:[
+        ["More GP appointments in North Bloggs","Help Joe press for better access to local GP services.","campaign-gp.html","https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=84"],
+        ["Safer streets in North Bloggs","Back visible neighbourhood policing and stronger action on antisocial behaviour.","campaign-safer-streets.html","https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=84"],
+        ["Protect North Bloggs community facilities","Help Joe make the case for valued local spaces and services.","campaign-local-services.html","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=84"]
+      ],
+      events:[
+        ["North Bloggs community walkabout","Saturday 3 October · North Bloggs","event-north-walkabout.html","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=84"],
+        ["North Bloggs residents meeting","Thursday 15 October · Community Centre","event-north-residents-meeting.html","https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=84"],
+        ["Health services drop-in","Monday 26 October · North Bloggs Library","event-town-centre-surgery.html","https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=84"]
+      ]
+    },
+    "little-bloggs": {
+      name:"Little Bloggs",
+      intro:"Joe is working with residents in Little Bloggs on roads, buses, planning, local services and the issues affecting everyday journeys.",
+      focus:"Road repairs, reliable buses and infrastructure alongside new development.",
+      hero:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85",
+      news:[
+        ["Joe takes Little Bloggs road concerns to local leaders","Potholes, congestion and junction safety top the agenda after resident feedback.","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+        ["Bus reliability raised by Little Bloggs commuters","Joe is pressing transport operators on cancellations and poor evening connections.","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"],
+        ["Planning concerns raised at Little Bloggs meeting","Residents say development must come with the infrastructure the area needs.","https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=84"]
+      ],
+      campaigns:[
+        ["Fix Little Bloggs’ roads","Tell Joe where potholes, congestion and unsafe junctions need action first.","campaign-roads.html","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+        ["Protect Little Bloggs bus links","Support reliable transport connections for residents and commuters.","campaign-roads.html","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"],
+        ["Infrastructure before more development","Support better roads, services and facilities alongside new homes.","campaign-local-services.html","https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=84"]
+      ],
+      events:[
+        ["Public meeting on local transport","Thursday 8 October · Community Hall","event-transport-meeting.html","https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=84"],
+        ["Little Bloggs roads drop-in","Saturday 17 October · Little Bloggs Library","event-roads-dropin.html","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"],
+        ["Planning and infrastructure Q&A","Thursday 29 October · Community Hall","event-north-residents-meeting.html","https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=84"]
+      ]
+    },
+    "villages": {
+      name:"The Villages",
+      intro:"Joe is working across the villages to protect local services, improve rural transport and make sure smaller communities are heard.",
+      focus:"Village services, rural buses and better maintenance of local roads.",
+      hero:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85",
+      news:[
+        ["Protecting community services across the villages","Joe meets residents to discuss transport, local facilities and access to essential services.","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"],
+        ["Village road repairs added to Joe’s local action list","Residents have highlighted damaged routes and junctions that need urgent attention.","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+        ["Rural bus cuts raised with transport operators","Joe is pressing for better connections for residents without access to a car.","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"]
+      ],
+      campaigns:[
+        ["Protect services in the villages","Help Joe make the case for the services rural communities rely on.","campaign-local-services.html","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"],
+        ["Better roads across the villages","Report the routes that need repairs, safer junctions or better maintenance.","campaign-roads.html","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+        ["Protect rural bus links","Support reliable public transport for residents without access to a car.","campaign-roads.html","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"]
+      ],
+      events:[
+        ["Village services forum","Wednesday 21 October · Village Hall","event-village-services-forum.html","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"],
+        ["Rural transport meeting","Tuesday 3 November · East Village Hall","event-transport-meeting.html","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"],
+        ["Village roads drop-in","Saturday 7 November · West Village Hall","event-roads-dropin.html","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"]
+      ]
+    }
+  };
+
+  function getArea(){
+    const q = new URLSearchParams(location.search).get("area");
+    if (AREAS[q]) return q;
+    try {
+      const saved = sessionStorage.getItem("joeArea");
+      return AREAS[saved] ? saved : "";
+    } catch(e) { return ""; }
+  }
+
+  function card(item,type,areaName){
+    const article = document.createElement("article");
+    article.className = "card area-hub-card";
+    const href = type === "news" ? "news.html" : item[2];
+    const image = type === "news" ? item[2] : item[3];
+    const label = type === "news" ? "Read story" : (type === "campaign" ? "Back campaign" : "View event");
+    article.innerHTML =
+      '<div class="card-image" style="background-image:url(&quot;'+image+'&quot;)"></div>'+
+      '<div class="local-badge">'+areaName+'</div>'+
+      '<h3>'+item[0]+'</h3>'+
+      '<p>'+item[1]+'</p>'+
+      '<a class="btn navy" href="'+href+'">'+label+'</a>';
+    return article;
+  }
+
+  function fill(id, items, type, areaName){
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = "";
+    items.forEach(item => el.appendChild(card(item,type,areaName)));
+  }
+
+  function showArea(key){
+    const cfg = AREAS[key];
+    if (!cfg) return;
+    document.body.classList.remove("area-generic");
+    document.body.classList.add("area-personalised");
+
+    document.getElementById("areaPageTitle").textContent = "What Joe is doing in " + cfg.name;
+    document.getElementById("areaPageIntro").textContent = cfg.intro;
+    document.getElementById("areaFocusTitle").textContent = "Joe’s focus in " + cfg.name;
+    document.getElementById("areaFocusText").textContent = cfg.focus;
+    document.getElementById("areaPageImage").style.backgroundImage = 'url("' + cfg.hero + '")';
+
+    document.getElementById("areaNewsHeading").textContent = "Latest from " + cfg.name;
+    document.getElementById("areaNewsIntro").textContent = "News and local updates specifically relevant to " + cfg.name + ".";
+    document.getElementById("areaCampaignsHeading").textContent = "Campaigns in " + cfg.name;
+    document.getElementById("areaCampaignsIntro").textContent = "Campaigns Joe is working on with residents in " + cfg.name + ".";
+    document.getElementById("areaEventsHeading").textContent = "Coming up in " + cfg.name;
+    document.getElementById("areaEventsIntro").textContent = "Meet Joe and join events relevant to " + cfg.name + ".";
+
+    fill("areaNewsCards", cfg.news, "news", cfg.name);
+    fill("areaCampaignCards", cfg.campaigns, "campaign", cfg.name);
+    fill("areaEventCards", cfg.events, "event", cfg.name);
+  }
+
+  document.querySelectorAll("[data-set-area]").forEach(btn => {
+    btn.addEventListener("click", function(){
+      const key = btn.dataset.setArea;
+      try { sessionStorage.setItem("joeArea", key); } catch(e) {}
+      showArea(key);
+    });
+  });
+
+  const selected = getArea();
+  if (selected) showArea(selected);
+})();
+</script>
+
+
+<script src="assets/js/personalisation.js?v=24"></script>
+</body>
+</html>

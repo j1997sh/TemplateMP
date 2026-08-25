@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Joe | Joe Bloggs MP</title>
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
+.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
+.mobile-nav.open{display:block}
+.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
+.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
+.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
+.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
+@media(min-width:1101px){.mobile-nav{display:none!important}}
+@media(max-width:1100px){
+  .site-header .nav{display:none!important}
+  .menu-button{display:block!important}
+}
+</style>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">JB</span>
+      <span class="logo-copy"><strong>Joe Bloggs</strong><span>MP for Bloggs Town</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Joe</a>
+      <a href="your-area.html">Your area</a>
+      <a href="our-plan.html">Our plan</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="events.html">Events</a>
+      <a href="news.html">News</a>
+      <a href="have-your-say.html">Have your say</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="have-your-say.html" class="header-box signup">Sign up</a>
+      <a href="get-help.html" class="header-box help-button">Get help</a>
+    </div>
+
+    <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  </div>
+</header>
+
+<div class="area-status" id="areaStatus">
+  <div class="container area-status-inner">
+    <div>Showing local content for <strong id="areaStatusName"></strong></div>
+    <div class="area-status-actions">
+      <button type="button" id="changeAreaButton">Change area</button>
+      <button type="button" id="dismissAreaButton" class="dismiss-area" aria-label="Turn off personalisation" title="Turn off personalisation">×</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Joe</a>
+    <a href="your-area.html">Your area</a>
+    <a href="our-plan.html">Our plan</a>
+    <a href="campaigns.html">Campaigns</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="have-your-say.html">Have your say</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <a href="have-your-say.html" class="header-box signup">Sign up</a>
+    <a href="get-help.html" class="header-box help-button">Get help</a>
+  </div>
+</div>
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>About Joe</h1><p>Joe Bloggs is the Member of Parliament for Bloggs Town, working locally and in Westminster for the people he represents.</p></div></div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=85')"></div>
+    <div>
+      <h2>Practical leadership. Local focus.</h2>
+      <p class="lead">Joe has always believed politics works best when it starts with listening. As MP for Bloggs Town, his job is to make sure local people are heard and local problems are acted on.</p>
+      <p>Joe spends his week between Parliament and the constituency, meeting residents, schools, local businesses, charities and community groups.</p>
+      <a class="btn" href="get-help.html">Contact Joe</a>
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="container">
+    <h2>Joe’s work as your MP</h2>
+    <div class="grid-3">
+      <div class="card"><h3>In Bloggs Town</h3><p>Regular visits, surgeries and meetings with the people and organisations that keep the constituency moving.</p><a class="btn navy" href="your-area.html">See local work</a></div>
+      <div class="card"><h3>In Parliament</h3><p>Representing Bloggs Town in debates, questions and meetings with ministers.</p><a class="btn navy" href="news.html">See updates</a></div>
+      <div class="card"><h3>For residents</h3><p>Helping constituents navigate government departments and public services when things go wrong.</p><a class="btn navy" href="get-help.html">Get help</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff">
+          <span class="logo-mark">JB</span>
+          <span class="logo-copy"><strong>Joe Bloggs</strong><span style="color:#b8c7d8">MP for Bloggs Town</span></span>
+        </div>
+      </div>
+      <div><h4>Joe</h4><a href="about.html">About Joe</a><a href="our-plan.html">Our plan</a><a href="campaigns.html">Campaigns</a><a href="news.html">News</a></div>
+      <div><h4>Bloggs Town</h4><a href="your-area.html">Your area</a><a href="events.html">Events</a><a href="news.html">Local updates</a><a href="have-your-say.html">Residents survey</a></div>
+      <div><h4>Get involved</h4><a href="get-help.html">Get help</a><a href="get-help.html#surgeries">Surgeries</a><a href="donate.html">Donate</a><a href="get-help.html#contact">Contact</a></div>
+    </div>
+    <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  function initMobileMenu() {
+    var button = document.getElementById('menuButton');
+    var menu = document.getElementById('mobileNav');
+    if (!button || !menu || button.dataset.menuReady === 'true') return;
+
+    button.dataset.menuReady = 'true';
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var open = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.textContent = open ? 'Close' : 'Menu';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = 'Menu';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();
+</script>
+
+<script src="assets/js/personalisation.js?v=24"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events | Joe Bloggs MP</title>
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
+.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
+.mobile-nav.open{display:block}
+.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
+.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
+.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
+.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
+@media(min-width:1101px){.mobile-nav{display:none!important}}
+@media(max-width:1100px){
+  .site-header .nav{display:none!important}
+  .menu-button{display:block!important}
+}
+</style>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">JB</span>
+      <span class="logo-copy"><strong>Joe Bloggs</strong><span>MP for Bloggs Town</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Joe</a>
+      <a href="your-area.html">Your area</a>
+      <a href="our-plan.html">Our plan</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="events.html">Events</a>
+      <a href="news.html">News</a>
+      <a href="have-your-say.html">Have your say</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="have-your-say.html" class="header-box signup">Sign up</a>
+      <a href="get-help.html" class="header-box help-button">Get help</a>
+    </div>
+
+    <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  </div>
+</header>
+
+<div class="area-status" id="areaStatus">
+  <div class="container area-status-inner">
+    <div>Showing local content for <strong id="areaStatusName"></strong></div>
+    <div class="area-status-actions">
+      <button type="button" id="changeAreaButton">Change area</button>
+      <button type="button" id="dismissAreaButton" class="dismiss-area" aria-label="Turn off personalisation" title="Turn off personalisation">×</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Joe</a>
+    <a href="your-area.html">Your area</a>
+    <a href="our-plan.html">Our plan</a>
+    <a href="campaigns.html">Campaigns</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="have-your-say.html">Have your say</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <a href="have-your-say.html" class="header-box signup">Sign up</a>
+    <a href="get-help.html" class="header-box help-button">Get help</a>
+  </div>
+</div>
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>Events across Bloggs Town</h1><p>Meet Joe, join a local event or come along to one of his constituency surgeries.</p></div></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Upcoming events</h2>
+    <p class="lead">Meet Joe, hear what he is working on and join events happening across Bloggs Town.</p>
+    <div class="local-content-note" id="eventLocalNote" data-area-copy="Events in and around {area} are being shown first.">Events near you are being shown first.</div>
+    <div class="grid-3" data-personalised-grid="events">
+      <article class="card" data-area="town-centre"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1000&q=85')"></div><h3>Joe’s town-centre surgery</h3><p>Friday 11 September · Bloggs Town Library</p><a class="btn navy" href="events/town-centre-surgery.html">View event</a></article>
+      <article class="card" data-area="town-centre"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85')"></div><h3>Bloggs Town business roundtable</h3><p>Monday 21 September · Bloggs Business Centre</p><a class="btn navy" href="events/business-roundtable.html">View event</a></article>
+      <article class="card" data-area="town-centre"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85')"></div><h3>Town centre safety walkabout</h3><p>Thursday 1 October · Market Square</p><a class="btn navy" href="events/north-walkabout.html">View event</a></article>
+      <article class="card" data-area="town-centre"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=85')"></div><h3>High street open meeting</h3><p>Tuesday 13 October · Town Hall</p><a class="btn navy" href="events/north-residents-meeting.html">View event</a></article>
+      <article class="card" data-area="north-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85')"></div><h3>North Bloggs community walkabout</h3><p>Saturday 3 October · North Bloggs</p><a class="btn navy" href="events/north-walkabout.html">View event</a></article>
+      <article class="card" data-area="north-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=85')"></div><h3>North Bloggs residents meeting</h3><p>Thursday 15 October · Community Centre</p><a class="btn navy" href="events/north-residents-meeting.html">View event</a></article>
+      <article class="card" data-area="north-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=85')"></div><h3>Health services drop-in</h3><p>Monday 26 October · North Bloggs Library</p><a class="btn navy" href="events/town-centre-surgery.html">View event</a></article>
+      <article class="card" data-area="north-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=85')"></div><h3>School safety walkabout</h3><p>Saturday 31 October · North Bloggs</p><a class="btn navy" href="events/north-walkabout.html">View event</a></article>
+      <article class="card" data-area="little-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1000&q=85')"></div><h3>Public meeting on local transport</h3><p>Thursday 8 October · Community Hall</p><a class="btn navy" href="events/transport-meeting.html">View event</a></article>
+      <article class="card" data-area="little-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1000&q=85')"></div><h3>Little Bloggs roads drop-in</h3><p>Saturday 17 October · Little Bloggs Library</p><a class="btn navy" href="events/roads-dropin.html">View event</a></article>
+      <article class="card" data-area="little-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1000&q=85')"></div><h3>Planning and infrastructure Q&A</h3><p>Thursday 29 October · Community Hall</p><a class="btn navy" href="events/north-residents-meeting.html">View event</a></article>
+      <article class="card" data-area="little-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1000&q=85')"></div><h3>Local services surgery</h3><p>Friday 6 November · Little Bloggs Library</p><a class="btn navy" href="events/town-centre-surgery.html">View event</a></article>
+      <article class="card" data-area="villages"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=85')"></div><h3>Village services forum</h3><p>Wednesday 21 October · Village Hall</p><a class="btn navy" href="events/village-services-forum.html">View event</a></article>
+      <article class="card" data-area="villages"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1000&q=85')"></div><h3>Rural transport meeting</h3><p>Tuesday 3 November · East Village Hall</p><a class="btn navy" href="events/transport-meeting.html">View event</a></article>
+      <article class="card" data-area="villages"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85')"></div><h3>Village roads drop-in</h3><p>Saturday 7 November · West Village Hall</p><a class="btn navy" href="events/roads-dropin.html">View event</a></article>
+      <article class="card" data-area="villages"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1000&q=85')"></div><h3>Community services surgery</h3><p>Friday 13 November · South Village Hall</p><a class="btn navy" href="events/town-centre-surgery.html">View event</a></article>
+    </div><h3>Joe’s town-centre surgery</h3><p>Friday 11 September · Bloggs Town Library</p><a class="btn navy" href="get-help.html#surgeries">Request an appointment</a></article>
+      <article class="card" data-area="town-centre"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85')"></div><h3>Bloggs Town business roundtable</h3><p>Monday 21 September · Bloggs Business Centre</p><a class="btn navy" href="#">Register</a></article>
+      <article class="card" data-area="north-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85')"></div><h3>North Bloggs community walkabout</h3><p>Saturday 3 October · North Bloggs</p><a class="btn navy" href="#">Join Joe</a></article>
+      <article class="card" data-area="north-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=85')"></div><h3>North Bloggs residents meeting</h3><p>Thursday 15 October · North Bloggs Community Centre</p><a class="btn navy" href="#">Register</a></article>
+      <article class="card" data-area="little-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1000&q=85')"></div><h3>Public meeting on local transport</h3><p>Thursday 8 October · Little Bloggs Community Hall</p><a class="btn navy" href="#">Register</a></article>
+      <article class="card" data-area="little-bloggs"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1000&q=85')"></div><h3>Little Bloggs roads drop-in</h3><p>Saturday 17 October · Little Bloggs Library</p><a class="btn navy" href="#">Come along</a></article>
+      <article class="card" data-area="villages"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=85')"></div><h3>Village services forum</h3><p>Wednesday 21 October · Village Hall</p><a class="btn navy" href="#">Register</a></article>
+      <article class="card" data-area="all"><div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1000&q=85')"></div><h3>Ask Joe: online Q&amp;A</h3><p>Wednesday 30 September · Online</p><a class="btn navy" href="#">Sign up</a></article>
+    </div>
+  </div>
+</section>
+<section class="section navy">
+  <div class="container two-col">
+    <div><h2>Want to know what’s happening near you?</h2><p class="lead">Use your postcode to prioritise events, local visits and updates from your part of Bloggs Town.</p><a class="btn white" href="your-area.html">Find my area</a></div>
+    <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85')"></div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="local-recommendation">
+      <div>
+        <h3 data-area-copy="More happening in {area}">More happening near you</h3>
+        <p data-area-copy="See Joe’s latest campaigns and news for {area}.">See Joe’s latest campaigns and news for your area.</p>
+      </div>
+      <a class="btn" href="campaigns.html">See local campaigns</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff">
+          <span class="logo-mark">JB</span>
+          <span class="logo-copy"><strong>Joe Bloggs</strong><span style="color:#b8c7d8">MP for Bloggs Town</span></span>
+        </div>
+      </div>
+      <div><h4>Joe</h4><a href="about.html">About Joe</a><a href="our-plan.html">Our plan</a><a href="campaigns.html">Campaigns</a><a href="news.html">News</a></div>
+      <div><h4>Bloggs Town</h4><a href="your-area.html">Your area</a><a href="events.html">Events</a><a href="news.html">Local updates</a><a href="have-your-say.html">Residents survey</a></div>
+      <div><h4>Get involved</h4><a href="get-help.html">Get help</a><a href="get-help.html#surgeries">Surgeries</a><a href="donate.html">Donate</a><a href="get-help.html#contact">Contact</a></div>
+    </div>
+    <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  function initMobileMenu() {
+    var button = document.getElementById('menuButton');
+    var menu = document.getElementById('mobileNav');
+    if (!button || !menu || button.dataset.menuReady === 'true') return;
+
+    button.dataset.menuReady = 'true';
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var open = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.textContent = open ? 'Close' : 'Menu';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = 'Menu';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();
+</script>
+
+<script src="assets/js/personalisation.js?v=24"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News | Joe Bloggs MP</title>
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
+.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
+.mobile-nav.open{display:block}
+.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
+.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
+.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
+.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
+@media(min-width:1101px){.mobile-nav{display:none!important}}
+@media(max-width:1100px){
+  .site-header .nav{display:none!important}
+  .menu-button{display:block!important}
+}
+</style>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">JB</span>
+      <span class="logo-copy"><strong>Joe Bloggs</strong><span>MP for Bloggs Town</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Joe</a>
+      <a href="your-area.html">Your area</a>
+      <a href="our-plan.html">Our plan</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="events.html">Events</a>
+      <a href="news.html">News</a>
+      <a href="have-your-say.html">Have your say</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="have-your-say.html" class="header-box signup">Sign up</a>
+      <a href="get-help.html" class="header-box help-button">Get help</a>
+    </div>
+
+    <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  </div>
+</header>
+
+<div class="area-status" id="areaStatus">
+  <div class="container area-status-inner">
+    <div>Showing local content for <strong id="areaStatusName"></strong></div>
+    <div class="area-status-actions">
+      <button type="button" id="changeAreaButton">Change area</button>
+      <button type="button" id="dismissAreaButton" class="dismiss-area" aria-label="Turn off personalisation" title="Turn off personalisation">×</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Joe</a>
+    <a href="your-area.html">Your area</a>
+    <a href="our-plan.html">Our plan</a>
+    <a href="campaigns.html">Campaigns</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="have-your-say.html">Have your say</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <a href="have-your-say.html" class="header-box signup">Sign up</a>
+    <a href="get-help.html" class="header-box help-button">Get help</a>
+  </div>
+</div>
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>Latest from Joe</h1><p>News from around Bloggs Town, local campaigns and Joe’s work in Parliament.</p></div></div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div id="personalisedNews" style="display:none">
+      <div class="news-section-head">
+        <div>
+          <h2 id="personalisedNewsHeading">Latest near you</h2>
+          <p id="personalisedNewsIntro">Stories from your area.</p>
+        </div>
+      </div>
+      <div class="grid-3 news-grid-fixed" id="localNewsGrid"></div>
+    </div>
+
+    <div id="allNews">
+      <div class="news-section-head">
+        <div>
+          <h2 id="allNewsHeading">Latest from Joe</h2>
+          <p id="allNewsIntro">News from across Bloggs Town.</p>
+        </div>
+      </div>
+      <div class="grid-3 news-grid-fixed" id="allNewsGrid">
+        <article class="card news-card" data-area="town-centre">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Bloggs Town Centre</div>
+      <h3>Joe meets traders on Bloggs Town high street</h3>
+      <p>Businesses raise empty units, parking and the cost of investing in the town centre.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="town-centre">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Bloggs Town Centre</div>
+      <h3>New push to bring empty town-centre units back into use</h3>
+      <p>Joe is calling for practical action to support a busier, stronger Bloggs Town Centre.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="town-centre">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Bloggs Town Centre</div>
+      <h3>Residents raise late-night antisocial behaviour in the centre</h3>
+      <p>Joe has asked local police and the council to look at repeat problem spots.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="town-centre">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Bloggs Town Centre</div>
+      <h3>Joe backs better evening bus connections into town</h3>
+      <p>Local workers and residents say evening services are too infrequent and unreliable.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="north-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">North Bloggs</div>
+      <h3>Joe presses for more GP appointments in North Bloggs</h3>
+      <p>Residents say access to appointments remains one of their biggest local concerns.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="north-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">North Bloggs</div>
+      <h3>North Bloggs walkabout focuses on neighbourhood safety</h3>
+      <p>Joe joins residents to hear concerns about antisocial behaviour and visible policing.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="north-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">North Bloggs</div>
+      <h3>School crossing concerns raised by North Bloggs parents</h3>
+      <p>Joe is pressing for a review of safety around a busy local school route.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="north-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">North Bloggs</div>
+      <h3>Community centre funding discussed with local groups</h3>
+      <p>Joe meets volunteers to discuss the future of a well-used North Bloggs facility.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="little-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Little Bloggs</div>
+      <h3>Joe takes Little Bloggs road concerns to local leaders</h3>
+      <p>Potholes, congestion and junction safety top the agenda after resident feedback.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="little-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Little Bloggs</div>
+      <h3>Bus reliability raised by Little Bloggs commuters</h3>
+      <p>Joe is pressing transport operators on cancellations and poor evening connections.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="little-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Little Bloggs</div>
+      <h3>Residents oppose loss of local cashpoint</h3>
+      <p>Joe has asked providers to explain how access to basic banking services will be maintained.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="little-bloggs">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">Little Bloggs</div>
+      <h3>Planning concerns raised at Little Bloggs meeting</h3>
+      <p>Residents say development must come with the infrastructure the area needs.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="villages">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">The Villages</div>
+      <h3>Protecting community services across the villages</h3>
+      <p>Joe meets residents to discuss transport, local facilities and access to essential services.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="villages">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">The Villages</div>
+      <h3>Village road repairs added to Joe’s local action list</h3>
+      <p>Residents have highlighted damaged routes and junctions that need urgent attention.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="villages">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">The Villages</div>
+      <h3>Rural bus cuts raised with transport operators</h3>
+      <p>Joe is pressing for better connections for residents without access to a car.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+<article class="card news-card" data-area="villages">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="local-badge news-area-badge">The Villages</div>
+      <h3>Joe backs campaign to protect village post office services</h3>
+      <p>Residents say local access to postal and banking services remains essential.</p>
+      <a class="btn navy" href="news/story.html">Read more</a>
+    </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="local-recommendation">
+      <div>
+        <h3 data-area-copy="Get updates from {area}">Get updates from your area</h3>
+        <p data-area-copy="Sign up for news, campaigns and events specifically relevant to {area}.">Sign up for news, campaigns and events specifically relevant to where you live.</p>
+      </div>
+      <a class="btn" href="have-your-say.html">Choose my updates</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff">
+          <span class="logo-mark">JB</span>
+          <span class="logo-copy"><strong>Joe Bloggs</strong><span style="color:#b8c7d8">MP for Bloggs Town</span></span>
+        </div>
+      </div>
+      <div><h4>Joe</h4><a href="about.html">About Joe</a><a href="our-plan.html">Our plan</a><a href="campaigns.html">Campaigns</a><a href="news.html">News</a></div>
+      <div><h4>Bloggs Town</h4><a href="your-area.html">Your area</a><a href="events.html">Events</a><a href="news.html">Local updates</a><a href="have-your-say.html">Residents survey</a></div>
+      <div><h4>Get involved</h4><a href="get-help.html">Get help</a><a href="get-help.html#surgeries">Surgeries</a><a href="donate.html">Donate</a><a href="get-help.html#contact">Contact</a></div>
+    </div>
+    <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  function initMobileMenu() {
+    var button = document.getElementById('menuButton');
+    var menu = document.getElementById('mobileNav');
+    if (!button || !menu || button.dataset.menuReady === 'true') return;
+
+    button.dataset.menuReady = 'true';
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var open = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.textContent = open ? 'Close' : 'Menu';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = 'Menu';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();
+</script>
+
+<script src="assets/js/personalisation.js?v=24"></script>
+<script src="assets/js/news.js?v=24"></script>
+</body>
+</html>

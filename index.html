@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Joe Bloggs MP for Bloggs Town</title>
+<style>
+:root{
+  --navy:#08254a;
+  --red:#0b67c6;
+  --cream:#ffffff;
+  --text:#0b2448;
+  --muted:#657184;
+  --line:#d8d8d8;
+  --white:#ffffff;
+  --max:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Proxima Nova","Avenir Next",Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:#fff;
+  line-height:1.45;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+.container{
+  width:min(var(--max),calc(100% - 64px));
+  margin:0 auto;
+}
+
+/* Header */
+.site-header{
+  position:relative;
+  z-index:20;
+  background:#fff;
+  color:var(--navy);
+  border-bottom:1px solid #e6eaf0;
+}
+.header-inner{
+  height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  min-width:0;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:800;
+  color:var(--navy);
+}
+.logo-mark{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:#0b67c6;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:14px;
+  font-weight:900;
+}
+.logo-copy{
+  line-height:1.05;
+}
+.logo-copy strong{
+  display:block;
+  font-size:21px;
+  letter-spacing:-.03em;
+}
+.logo-copy span{
+  display:block;
+  font-size:11px;
+  margin-top:5px;
+  color:#5e6a7c;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--navy);
+}
+.nav a:hover{color:#0b67c6}
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+.header-box{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:42px;
+  min-height:42px;
+  padding:0 15px;
+  border:1px solid #0b67c6;
+  font-weight:800;
+  line-height:1;
+  white-space:nowrap;
+}
+.header-box.signup{background:#fff;color:#0b67c6}
+.header-box.help-button{background:#0b67c6;color:#fff}
+.menu-button{display:none}
+
+/* Mobile navigation */
+.mobile-nav{
+  display:none;
+  background:#fff;
+  border-bottom:1px solid #e6eaf0;
+}
+.mobile-nav.open{display:block}
+.mobile-nav nav{
+  display:flex;
+  flex-direction:column;
+  padding:8px 20px 4px;
+}
+.mobile-nav nav a{
+  padding:14px 0;
+  border-bottom:1px solid #edf0f4;
+  font-weight:800;
+  color:var(--navy);
+}
+.mobile-nav-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:14px 20px 18px;
+}
+.mobile-nav-actions .header-box{
+  width:100%;
+}
+
+/* Hero */
+.hero{
+  min-height:610px;
+  position:relative;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(4,23,47,.88) 0%,rgba(7,38,77,.72) 38%,rgba(8,60,112,.24) 67%,rgba(8,60,112,.06) 100%),
+    url("https://images.unsplash.com/photo-1780775119736-fca3cf95cfc8?auto=format&fit=crop&fm=jpg&q=84&w=2200") center 48%/cover no-repeat;
+}
+.hero-inner{
+  min-height:610px;
+  display:flex;
+  align-items:flex-end;
+  padding:82px 0 48px;
+}
+.hero-content{
+  width:min(760px,100%);
+}
+.hero h1{
+  margin:0 0 14px;
+  font-size:clamp(52px,6.2vw,82px);
+  line-height:.94;
+  letter-spacing:-.055em;
+  max-width:760px;
+}
+.hero p{
+  margin:0 0 24px;
+  max-width:610px;
+  font-size:18px;
+  line-height:1.45;
+  color:#f5f7fb;
+}
+.hero-form{
+  display:grid;
+  grid-template-columns:1fr 1fr 1.3fr 1fr auto;
+  gap:8px;
+  width:min(1050px,100%);
+}
+.hero-form input{
+  min-width:0;
+  height:48px;
+  border:0;
+  padding:0 14px;
+  background:#fff;
+  color:var(--text);
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:0 22px;
+  border:0;
+  background:#0b67c6;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn.light{
+  background:#fff;
+  color:var(--navy);
+}
+.btn.navy{
+  background:var(--navy);
+  color:#fff;
+}
+
+/* Intro */
+.intro{
+  padding:62px 0;
+  background:#fff;
+}
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:52px;
+  align-items:center;
+}
+.intro-image{
+  min-height:350px;
+  background:url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=85") center/cover no-repeat;
+}
+.intro-copy h2,
+.area-copy h2,
+.section-heading h2{
+  margin:0 0 16px;
+  font-size:48px;
+  line-height:1;
+  letter-spacing:-.05em;
+}
+.intro-copy p,
+.area-copy p,
+.card p{
+  color:var(--muted);
+  font-size:17px;
+}
+.intro-copy .btn{margin-top:12px}
+
+/* Area section */
+.area{
+  background:#fff;
+  padding:62px 0;
+}
+.area-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:48px;
+  align-items:center;
+}
+.area-copy{
+  padding-left:8px;
+}
+.area-form{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  margin:24px 0 8px;
+  max-width:520px;
+}
+.area-form input{
+  height:52px;
+  border:1px solid #aaa;
+  padding:0 15px;
+  background:#fff;
+}
+.area-note{
+  font-size:14px;
+  color:var(--muted);
+}
+.area-image{
+  min-height:340px;
+  background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85") center/cover no-repeat;
+}
+
+/* Three action cards */
+.actions{
+  padding:62px 0 68px;
+  background:#fff;
+}
+.action-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+.card{
+  display:flex;
+  flex-direction:column;
+}
+.card-image{
+  aspect-ratio:1.55/1;
+  background-size:cover;
+  background-position:center;
+}
+.card-body{
+  padding:16px 4px 0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  flex:1;
+}
+.card h3{
+  margin:0 0 10px;
+  font-size:29px;
+  line-height:1.02;
+  letter-spacing:-.04em;
+}
+.card p{
+  margin:0 0 16px;
+  font-size:16px;
+}
+.card .btn{
+  margin-top:auto;
+}
+
+/* priorities */
+.priorities{
+  background:var(--navy);
+  color:#fff;
+  padding:64px 0 68px;
+}
+.section-heading{
+  display:block;
+  margin-bottom:26px;
+}
+.priority-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.priority{
+  position:relative;
+  min-height:270px;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  overflow:hidden;
+  color:#fff;
+  background-size:cover;
+  background-position:center;
+}
+.priority::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(5,24,49,.34) 0%,rgba(5,24,49,.78) 58%,rgba(5,24,49,.94) 100%);
+}
+.priority > *{
+  position:relative;
+  z-index:1;
+}
+.priority h3{
+  font-size:28px;
+  line-height:1;
+  margin:0 0 10px;
+  letter-spacing:-.04em;
+  color:#fff;
+}
+.priority p{
+  color:rgba(255,255,255,.88);
+  margin:0 0 18px;
+  font-size:16px;
+}
+.priority .btn{
+  margin-top:0;
+  background:#fff;
+  color:var(--navy);
+}
+
+/* latest */
+.latest{
+  padding:62px 0;
+  background:#fff;
+}
+.latest-grid{
+  display:grid;
+  grid-template-columns:1.25fr .75fr .75fr;
+  gap:26px;
+}
+.story{
+  border-top:1px solid var(--line);
+  padding-top:16px;
+}
+.story-image{
+  width:100%;
+  aspect-ratio:1.5/1;
+  background-size:cover;
+  background-position:center;
+  margin-bottom:16px;
+}
+.story.featured .story-image{aspect-ratio:1.8/1}
+.story h3{
+  margin:0 0 10px;
+  font-size:28px;
+  line-height:1.04;
+  letter-spacing:-.035em;
+}
+.story p{
+  color:var(--muted);
+  margin:0 0 16px;
+}
+.story .btn{min-height:44px}
+
+/* help */
+.help{
+  background:#fff;
+  padding:62px 0;
+}
+.help-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+}
+.help-copy h2{
+  font-size:48px;
+  line-height:1;
+  margin:0 0 16px;
+  letter-spacing:-.05em;
+}
+.help-copy p{
+  color:var(--muted);
+  font-size:17px;
+  max-width:560px;
+}
+.help-links{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.help-link{
+  background:#fff;
+  padding:20px;
+  border:1px solid #ddd5ca;
+  font-weight:800;
+}
+.help-actions{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* compact help */
+.help-compact{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+}
+.help-compact h2{
+  font-size:44px;
+  line-height:1;
+  margin:0 0 10px;
+  letter-spacing:-.045em;
+}
+.help-compact p{
+  margin:0;
+  color:var(--muted);
+  font-size:17px;
+  max-width:700px;
+}
+.help-compact-actions{
+  display:flex;
+  gap:10px;
+  flex:0 0 auto;
+}
+
+/* footer */
+footer{
+  background:#06172d;
+  color:#fff;
+  padding:42px 0;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.2fr repeat(3,.8fr);
+  gap:36px;
+}
+footer h4{
+  margin:0 0 10px;
+  font-size:16px;
+}
+footer a{
+  display:block;
+  color:#c8d2df;
+  margin:7px 0;
+  font-size:13px;
+}
+.footer-note{
+  border-top:1px solid rgba(255,255,255,.10);
+  margin-top:28px;
+  padding-top:18px;
+  color:#9fb0c4;
+  font-size:12px;
+}
+
+@media(max-width:1000px){
+  .help-compact{align-items:flex-start}
+
+  .nav{display:none}
+  .header-actions{margin-left:auto}
+  .menu-button{
+    display:block;
+    background:transparent;
+    color:var(--navy);
+    border:1px solid #cfd8e4;
+    padding:10px 12px;
+    font-weight:800;
+  }
+  .hero-form{grid-template-columns:1fr 1fr}
+  .hero-form .btn{grid-column:1/-1}
+  .intro-grid,.area-grid,.help-grid{grid-template-columns:1fr}
+  .priority-grid{grid-template-columns:1fr 1fr}
+  .latest-grid{grid-template-columns:1fr 1fr}
+  .story.featured{grid-column:1/-1}
+}
+@media(max-width:650px){
+  .help-compact{display:block}
+  .help-compact h2{font-size:38px}
+  .help-compact-actions{margin-top:20px;display:grid;grid-template-columns:1fr}
+
+  .container{width:min(var(--max),calc(100% - 28px))}
+  .header-inner{height:74px}
+  .header-actions .signup{display:none}
+  .header-box{height:40px;min-height:40px;padding:0 12px;font-size:13px}
+  .logo-copy strong{font-size:18px}
+  .hero{min-height:720px}
+  .hero-inner{min-height:720px;padding:120px 0 36px;align-items:flex-end}
+  .hero h1{font-size:55px}
+  .hero p{font-size:17px}
+  .hero-form{grid-template-columns:1fr}
+  .hero-form .btn{grid-column:auto}
+  .intro,.actions,.priorities,.latest,.help{padding:52px 0}
+  .intro-grid,.area-grid{gap:28px}
+  .intro-image,.area-image{min-height:300px}
+  .intro-copy h2,.area-copy h2,.section-heading h2,.help-copy h2{font-size:42px}
+  .area-form{grid-template-columns:1fr}
+  .action-grid,.priority-grid,.latest-grid,.help-links,.footer-grid{grid-template-columns:1fr}
+  .story.featured{grid-column:auto}
+  .section-heading{display:block}
+  
+}
+
+/* Subtle interaction */
+@media (hover:hover) and (pointer:fine){
+  a,
+  button{
+    transition:
+      color .18s ease,
+      background-color .18s ease,
+      border-color .18s ease,
+      opacity .18s ease,
+      transform .18s ease;
+  }
+
+  .nav a{
+    position:relative;
+  }
+  .nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-7px;
+    height:2px;
+    background:var(--blue);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .18s ease;
+  }
+  .nav a:hover::after,
+  .nav a.active::after{
+    transform:scaleX(1);
+  }
+
+  .header-box:hover,
+  .btn:hover{
+    transform:translateY(-2px);
+  }
+
+  .header-box.signup:hover{
+    background:#f4f8fd;
+  }
+  .header-box.help-button:hover,
+  .btn:hover{
+    background:#095bb0;
+  }
+  .btn.navy:hover{
+    background:#061c38;
+  }
+  .btn.white:hover{
+    background:#eef5fc;
+    color:var(--navy);
+  }
+
+  .card,
+  .image-card,
+  .list-item{
+    transition:
+      transform .22s ease,
+      box-shadow .22s ease,
+      border-color .22s ease;
+  }
+
+  .card:hover{
+    transform:translateY(-5px);
+  }
+  .card:hover .card-image{
+    transform:scale(1.025);
+  }
+  .card-image{
+    transition:transform .35s ease;
+  }
+
+  .image-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(8,37,74,.13);
+  }
+  .image-card::before{
+    transition:background .25s ease;
+  }
+  .image-card:hover::before{
+    background:linear-gradient(180deg,rgba(5,24,49,.10),rgba(5,24,49,.82));
+  }
+
+  .list-item:hover{
+    transform:translateY(-2px);
+    border-color:#aebdd0;
+    box-shadow:0 6px 18px rgba(8,37,74,.07);
+  }
+
+  .logo:hover .logo-mark{
+    transform:rotate(-4deg) scale(1.04);
+  }
+  .logo-mark{
+    transition:transform .18s ease;
+  }
+
+  footer a:hover{
+    color:#fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto !important;
+    transition:none !important;
+    animation:none !important;
+  }
+}
+
+
+@media (hover:hover) and (pointer:fine){
+  .priority{
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .priority::before{
+    transition:background .25s ease;
+  }
+  .priority:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(8,37,74,.15);
+  }
+  .priority:hover::before{
+    background:linear-gradient(180deg,rgba(5,24,49,.24) 0%,rgba(5,24,49,.70) 58%,rgba(5,24,49,.90) 100%);
+  }
+  .story{
+    transition:transform .22s ease;
+  }
+  .story:hover{
+    transform:translateY(-4px);
+  }
+  .story-image{
+    transition:transform .35s ease;
+  }
+  .story:hover .story-image{
+    transform:scale(1.02);
+  }
+}
+
+
+/* Area personalisation */
+.area-status{
+  display:none;
+  background:#f4f8fd;
+  border-bottom:1px solid #dce7f3;
+  color:var(--navy);
+}
+.area-status.visible{display:block}
+.area-status-inner{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  font-size:13px;
+}
+.area-status strong{font-weight:800}
+.area-status button{
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:var(--blue);
+  padding:0;
+  font-weight:800;
+  cursor:pointer;
+}
+.local-result{
+  display:none;
+  margin-top:16px;
+  padding:18px 20px;
+  background:#f4f8fd;
+  border-left:4px solid var(--blue);
+}
+.local-result.visible{display:block}
+.local-result strong{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+.local-result p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+.local-content-note{
+  display:none;
+  margin:-10px 0 24px;
+  color:var(--muted);
+  font-size:14px;
+}
+.local-content-note.visible{display:block}
+@media(max-width:650px){
+  .area-status-inner{min-height:48px;font-size:12px}
+}
+
+
+.area-status-actions{display:flex;align-items:center;gap:16px}
+.dismiss-area{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #b8c7d8!important;color:var(--navy)!important;background:#fff!important;font-size:20px;line-height:1;padding:0!important}
+.dismiss-area:hover{background:#eaf2fb!important}
+
+</style>
+
+<style>
+/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
+.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
+.mobile-nav.open{display:block}
+.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
+.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
+.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
+.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
+@media(min-width:1101px){.mobile-nav{display:none!important}}
+@media(max-width:1100px){
+  .site-header .nav{display:none!important}
+  .menu-button{display:block!important}
+}
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">JB</span>
+      <span class="logo-copy"><strong>Joe Bloggs</strong><span>MP for Bloggs Town</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Joe</a>
+      <a href="your-area.html">Your area</a>
+      <a href="our-plan.html">Our plan</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="events.html">Events</a>
+      <a href="news.html">News</a>
+      <a href="have-your-say.html">Have your say</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="have-your-say.html" class="header-box signup">Sign up</a>
+      <a href="get-help.html" class="header-box help-button">Get help</a>
+    </div>
+
+    <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  </div>
+</header>
+
+<div class="area-status" id="areaStatus">
+  <div class="container area-status-inner">
+    <div>Showing local content for <strong id="areaStatusName"></strong></div>
+    <div class="area-status-actions">
+      <button type="button" id="changeAreaButton">Change area</button>
+      <button type="button" id="dismissAreaButton" class="dismiss-area" aria-label="Turn off personalisation" title="Turn off personalisation">×</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Joe</a>
+    <a href="your-area.html">Your area</a>
+    <a href="our-plan.html">Our plan</a>
+    <a href="campaigns.html">Campaigns</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="have-your-say.html">Have your say</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <a href="have-your-say.html" class="header-box signup">Sign up</a>
+    <a href="get-help.html" class="header-box help-button">Get help</a>
+  </div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <h1>Working for Bloggs Town.</h1>
+      <p>Joe Bloggs is your local MP, focused on practical action, strong local representation and getting things done for people across Bloggs Town.</p>
+
+      <form class="hero-form" id="heroSignup">
+        <input type="text" placeholder="First name" autocomplete="given-name">
+        <input type="text" placeholder="Second name" autocomplete="family-name">
+        <input type="email" placeholder="Email address" autocomplete="email">
+        <input type="text" id="heroPostcode" placeholder="Postcode" autocomplete="postal-code">
+        <button class="btn" type="submit">Stay in touch</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="about">
+  <div class="container intro-grid">
+    <div class="intro-image"></div>
+    <div class="intro-copy">
+      <h2>About Joe</h2>
+      <p>Joe works across Bloggs Town listening to residents, backing local communities and focusing on the issues that make the biggest difference to everyday life.</p>
+      <a class="btn" href="#">Meet Joe</a>
+    </div>
+  </div>
+</section>
+
+<section class="area" id="area">
+  <div class="container area-grid">
+    <div class="area-copy">
+      <h2>Joe in your area</h2>
+      <p>Find out what Joe is doing near you, what local people are raising and what is happening across Bloggs Town.</p>
+      <div class="area-form">
+        <input id="areaInput" type="text" placeholder="Enter your postcode or town">
+        <button class="btn" id="areaButton" type="button">Find my area</button>
+      </div>
+      <div class="area-note">Search by postcode or town to see local visits, campaigns, events and issues. Demo postcodes: BG1, BG2, BG3 or BG4.</div>
+      <div class="local-result" id="localResult">
+        <strong id="localResultTitle"></strong>
+        <p id="localResultText">We’ll prioritise news, events and campaigns from your part of Bloggs Town.</p>
+      </div>
+    </div>
+    <div class="area-image"></div>
+  </div>
+</section>
+
+
+
+<section class="priorities" id="priorities">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Our plan for Bloggs Town</h2></div>
+
+    <div class="priority-grid">
+      <article class="priority" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=82')">
+        <h3>Better local healthcare</h3>
+        <p>Improving access to GPs, dentists and local NHS services.</p>
+        <a class="btn" href="plan/healthcare.html">Read more</a>
+      </article>
+      <article class="priority" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=82')">
+        <h3>Safer streets</h3>
+        <p>Backing neighbourhood policing and tackling antisocial behaviour.</p>
+        <a class="btn" href="plan/safer-streets.html">Read more</a>
+      </article>
+      <article class="priority" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=82')">
+        <h3>Fixing our roads</h3>
+        <p>Pushing for better roads, reliable transport and less congestion.</p>
+        <a class="btn" href="plan/roads.html">Read more</a>
+      </article>
+      <article class="priority" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=82')">
+        <h3>Backing local business</h3>
+        <p>Supporting the high street, local employers and community investment.</p>
+        <a class="btn" href="plan/business.html">Read more</a>
+      </article>
+    </div>
+    <div class="local-content-note" id="priorityAreaLine" style="margin:18px 0 0;color:#dce7f4"></div>
+  </div>
+</section>
+
+<section class="latest" id="latest">
+  <div class="container">
+    <div class="section-heading">
+      <h2 id="latestHeading">Latest from Joe</h2></div>
+
+    <div class="local-content-note" id="latestLocalNote">Local stories are being shown first.</div>
+    <div class="latest-grid">
+      <article class="story featured" id="localStory">
+        <div class="story-image" id="localStoryImage" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=85')"></div>
+        <h3 id="localStoryTitle">Joe presses for more GP appointments in Bloggs Town</h3>
+        <p id="localStoryText">Joe met local healthcare leaders to discuss access to appointments and pressure on local practices.</p>
+        <a class="btn navy" id="localStoryButton" href="news.html">Read the story</a>
+      </article>
+      <article class="story">
+        <div class="story-image" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=85')"></div>
+        <h3>Backing Bloggs Town high street</h3>
+        <p>A new push to support independent shops and bring empty units back into use.</p>
+        <a class="btn navy" href="#">Read more</a>
+      </article>
+      <article class="story">
+        <div class="story-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85')"></div>
+        <h3>Protecting local services</h3>
+        <p>Joe meets residents to hear concerns about transport and community facilities.</p>
+        <a class="btn navy" href="#">Read more</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="help" id="help">
+  <div class="container">
+    <div class="help-compact">
+      <div>
+        <h2>Need Joe’s help?</h2>
+        <p>If you live in Bloggs Town, Joe and his team may be able to help with an issue involving a government department, public body or local service.</p>
+      </div>
+      <div class="help-compact-actions">
+        <a class="btn" href="get-help.html">Ask Joe for help</a>
+        <a class="btn navy" href="get-help.html#surgeries">Book a surgery</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff">
+          <span class="logo-mark">JB</span>
+          <span class="logo-copy">
+            <strong>Joe Bloggs</strong>
+            <span style="color:#b8c7d8">MP for Bloggs Town</span>
+          </span>
+        </div>
+      </div>
+      <div>
+        <h4>Joe</h4>
+        <a href="about.html">About Joe</a>
+        <a href="our-plan.html">Our plan</a>
+        <a href="news.html">News</a>
+      </div>
+      <div>
+        <h4>Bloggs Town</h4>
+        <a href="your-area.html">Your area</a>
+        <a href="#">Local events</a>
+        <a href="have-your-say.html">Residents survey</a>
+      </div>
+      <div>
+        <h4>Get help</h4>
+        <a href="get-help.html">Casework</a>
+        <a href="get-help.html#surgeries">Surgeries</a>
+        <a href="donate.html">Donate</a><a href="get-help.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
+  </div>
+</footer>
+
+
+<script>
+const areaButton = document.getElementById('areaButton');
+const areaInput = document.getElementById('areaInput');
+if (areaButton && areaInput) {
+  areaButton.addEventListener('click', () => {
+    const value = areaInput.value.trim();
+    if (!value) return;
+    areaButton.textContent = 'Showing local content';
+  });
+}
+
+</script>
+
+
+<script>
+(function () {
+  function initMobileMenu() {
+    var button = document.getElementById('menuButton');
+    var menu = document.getElementById('mobileNav');
+    if (!button || !menu || button.dataset.menuReady === 'true') return;
+
+    button.dataset.menuReady = 'true';
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var open = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.textContent = open ? 'Close' : 'Menu';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = 'Menu';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();
+</script>
+
+<script src="assets/js/personalisation.js?v=24"></script>
+</body>
+</html>

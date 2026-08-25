@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>North Bloggs residents meeting | Joe Bloggs MP</title>
+<link rel="stylesheet" href="../assets/css/shared.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-mark">JB</span>
+      <span class="logo-copy"><strong>Joe Bloggs</strong><span>MP for Bloggs Town</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About Joe</a>
+      <a href="../your-area.html">Your area</a>
+      <a href="../our-plan.html">Our plan</a>
+      <a href="../campaigns.html">Campaigns</a>
+      <a href="../events.html">Events</a>
+      <a href="../news.html">News</a>
+      <a href="../have-your-say.html">Have your say</a>
+      <a href="../donate.html">Donate</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="../have-your-say.html" class="header-box signup">Sign up</a>
+      <a href="../get-help.html" class="header-box help-button">Get help</a>
+    </div>
+
+    <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  </div>
+</header>
+<div class="area-status" id="areaStatus">
+  <div class="container area-status-inner">
+    <div>Showing local content for <strong id="areaStatusName"></strong></div>
+    <div class="area-status-actions">
+      <button type="button" id="changeAreaButton">Change area</button>
+      <button type="button" id="dismissAreaButton" class="dismiss-area" aria-label="Turn off personalisation" title="Turn off personalisation">×</button>
+    </div>
+  </div>
+</div>
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About Joe</a>
+    <a href="../your-area.html">Your area</a>
+    <a href="../our-plan.html">Our plan</a>
+    <a href="../campaigns.html">Campaigns</a>
+    <a href="../events.html">Events</a>
+    <a href="../news.html">News</a>
+    <a href="../have-your-say.html">Have your say</a>
+    <a href="../donate.html">Donate</a>
+  </nav>
+  <div class="mobile-nav-actions">
+    <a href="../have-your-say.html" class="header-box signup">Sign up</a>
+    <a href="../get-help.html" class="header-box help-button">Get help</a>
+  </div>
+</div>
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>North Bloggs residents meeting</h1><p>Thursday 15 October · North Bloggs Community Centre</p></div></div>
+</section>
+
+<section class="section">
+  <div class="container event-detail">
+    <div>
+      <h2>North Bloggs residents meeting</h2>
+      <p class="lead">An open residents meeting on the issues people in North Bloggs want Joe to focus on.</p>
+
+      <div class="event-meta">
+        <div><strong>Date</strong>Thursday 15 October</div>
+        <div><strong>Time</strong>7:00pm</div>
+        <div><strong>Location</strong>North Bloggs Community Centre</div>
+      </div>
+
+      <p>This event is designed for residents and local stakeholders who want to hear from Joe and raise issues directly.</p>
+    </div>
+
+    <aside class="rsvp-panel">
+      <h3>Reserve your place</h3>
+      <p>Sign up and we’ll send you the event details.</p>
+      <form class="rsvp-form event-rsvp-form"
+            data-event="north-residents-meeting"
+            data-event-title="North Bloggs residents meeting"
+            data-issue="general"
+            data-area="north-bloggs"
+            data-date="Thursday 15 October"
+            data-location="North Bloggs Community Centre">
+        <input name="first_name" placeholder="First name" autocomplete="given-name">
+        <input name="last_name" placeholder="Second name" autocomplete="family-name">
+        <input class="full" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input class="full" name="postcode" placeholder="Postcode" autocomplete="postal-code" required>
+        <label class="rsvp-consent">
+          <input type="checkbox" name="updates">
+          <span>Yes, I’d like to receive updates from Joe about local events and issues.</span>
+        </label>
+        <button class="btn full" type="submit">Reserve my place</button>
+      </form>
+      <p class="form-note">Demo only. In NationBuilder this RSVP would record event, area, issue and source.</p>
+    </aside>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff">
+          <span class="logo-mark">JB</span>
+          <span class="logo-copy"><strong>Joe Bloggs</strong><span style="color:#b8c7d8">MP for Bloggs Town</span></span>
+        </div>
+      </div>
+      <div><h4>Joe</h4><a href="../about.html">About Joe</a><a href="../our-plan.html">Our plan</a><a href="../campaigns.html">Campaigns</a><a href="../news.html">News</a></div>
+      <div><h4>Bloggs Town</h4><a href="../your-area.html">Your area</a><a href="../events.html">Events</a><a href="../news.html">Local updates</a><a href="../have-your-say.html">Residents survey</a></div>
+      <div><h4>Get involved</h4><a href="../get-help.html">Get help</a><a href="../get-help.html#surgeries">Surgeries</a><a href="../donate.html">Donate</a><a href="../get-help.html#contact">Contact</a></div>
+    </div>
+    <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
+  </div>
+</footer>
+<script>
+(function () {
+  function initMobileMenu() {
+    var button = document.getElementById('menuButton');
+    var menu = document.getElementById('mobileNav');
+    if (!button || !menu || button.dataset.menuReady === 'true') return;
+
+    button.dataset.menuReady = 'true';
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var open = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.textContent = open ? 'Close' : 'Menu';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = 'Menu';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();
+</script>
+
+<script src="../assets/js/personalisation.js?v=24"></script>
+<script src="../assets/js/forms.js?v=24"></script>
+</body>
+</html>
