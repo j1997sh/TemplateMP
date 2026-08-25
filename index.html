@@ -1203,6 +1203,29 @@ if (areaButton && areaInput) {
 })();
 </script>
 
-<script src="assets/js/personalisation.js?v=24"></script>
+<script src="assets/js/personalisation.js?v=29"></script>
+
+<script>
+(function(){
+  try{
+    var area=sessionStorage.getItem("joeArea");
+    var valid=["town-centre","north-bloggs","little-bloggs","villages"];
+    if(valid.indexOf(area)===-1) return;
+    window.setTimeout(function(){
+      var hub=document.getElementById("homeLocalHub");
+      if(hub && !hub.classList.contains("visible") && !sessionStorage.getItem("homeHubReloaded29")){
+        sessionStorage.setItem("homeHubReloaded29","1");
+        var u=new URL(window.location.href);
+        u.searchParams.set("area",area);
+        u.searchParams.set("_v","29");
+        window.location.replace(u.toString());
+      } else if(hub && hub.classList.contains("visible")){
+        sessionStorage.removeItem("homeHubReloaded29");
+      }
+    },350);
+  }catch(e){}
+})();
+</script>
+
 </body>
 </html>
