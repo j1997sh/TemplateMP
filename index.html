@@ -240,39 +240,70 @@ button,input{font:inherit}
 
 /* Area section */
 .area{
-  background:#fff;
-  padding:62px 0;
+  background:var(--navy);
+  color:#fff;
+  padding:28px 0;
 }
 .area-grid{
   display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:48px;
+  grid-template-columns:minmax(250px,.85fr) minmax(520px,1.4fr);
+  gap:44px;
   align-items:center;
 }
 .area-copy{
-  padding-left:8px;
+  display:contents;
+}
+.area-intro{
+  min-width:0;
+}
+.area-copy h2{
+  margin:0 0 6px;
+  font-size:34px;
+  line-height:1;
+  letter-spacing:-.045em;
+  color:#fff;
+}
+.area-copy p{
+  margin:0;
+  font-size:15px;
+  line-height:1.4;
+  color:rgba(255,255,255,.78);
+}
+.area-controls{
+  min-width:0;
 }
 .area-form{
   display:grid;
-  grid-template-columns:1fr auto;
+  grid-template-columns:minmax(0,1fr) auto;
   gap:8px;
-  margin:24px 0 8px;
-  max-width:520px;
+  margin:0;
+  max-width:none;
 }
 .area-form input{
-  height:52px;
-  border:1px solid #aaa;
+  width:100%;
+  height:48px;
+  border:1px solid rgba(255,255,255,.42);
   padding:0 15px;
   background:#fff;
+  color:var(--text);
+}
+.area-form .btn{
+  background:var(--blue);
+  min-width:150px;
 }
 .area-note{
-  font-size:14px;
-  color:var(--muted);
+  margin-top:7px;
+  font-size:12px;
+  color:rgba(255,255,255,.64);
 }
-.area-image{
-  min-height:340px;
-  background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85") center/cover no-repeat;
+.area .local-result{
+  margin-top:10px;
+  padding:12px 14px;
+  background:rgba(255,255,255,.1);
+  border-left:3px solid #fff;
 }
+.area .local-result strong{color:#fff;font-size:16px}
+.area .local-result p{color:rgba(255,255,255,.78);font-size:13px}
 
 /* Three action cards */
 .actions{
@@ -744,6 +775,19 @@ footer a{
 .dismiss-area{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #b8c7d8!important;color:var(--navy)!important;background:#fff!important;font-size:20px;line-height:1;padding:0!important}
 .dismiss-area:hover{background:#eaf2fb!important}
 
+
+@media(max-width:900px){
+  .area-grid{grid-template-columns:1fr;gap:14px}
+  .area-copy{display:block}
+  .area-controls{margin-top:14px}
+}
+@media(max-width:650px){
+  .area{padding:22px 0}
+  .area-copy h2{font-size:30px}
+  .area-form{grid-template-columns:1fr}
+  .area-form .btn{width:100%}
+}
+
 </style>
 
 <style>
@@ -838,6 +882,28 @@ footer a{
   </div>
 </section>
 
+<section class="area" id="area">
+  <div class="container area-grid">
+    <div class="area-copy">
+      <div class="area-intro">
+        <h2>Joe in your area</h2>
+        <p>See the news, campaigns and events that matter where you live.</p>
+      </div>
+      <div class="area-controls">
+        <div class="area-form">
+          <input id="areaInput" type="text" placeholder="Enter your postcode or town">
+          <button class="btn" id="areaButton" type="button">Find my area</button>
+        </div>
+        <div class="area-note">Demo postcodes: BG1, BG2, BG3 or BG4.</div>
+        <div class="local-result" id="localResult">
+          <strong id="localResultTitle"></strong>
+          <p id="localResultText">We’ll prioritise news, events and campaigns from your part of Bloggs Town.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="intro" id="about">
   <div class="container intro-grid">
     <div class="intro-image"></div>
@@ -849,24 +915,7 @@ footer a{
   </div>
 </section>
 
-<section class="area" id="area">
-  <div class="container area-grid">
-    <div class="area-copy">
-      <h2>Joe in your area</h2>
-      <p>Find out what Joe is doing near you, what local people are raising and what is happening across Bloggs Town.</p>
-      <div class="area-form">
-        <input id="areaInput" type="text" placeholder="Enter your postcode or town">
-        <button class="btn" id="areaButton" type="button">Find my area</button>
-      </div>
-      <div class="area-note">Search by postcode or town to see local visits, campaigns, events and issues. Demo postcodes: BG1, BG2, BG3 or BG4.</div>
-      <div class="local-result" id="localResult">
-        <strong id="localResultTitle"></strong>
-        <p id="localResultText">We’ll prioritise news, events and campaigns from your part of Bloggs Town.</p>
-      </div>
-    </div>
-    <div class="area-image"></div>
-  </div>
-</section>
+
 
 
 
