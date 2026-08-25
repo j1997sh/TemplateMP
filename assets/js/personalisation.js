@@ -53,10 +53,7 @@
 
 
   function captureSourceContext(){
-    captureSourceContext();
-  renderSourceContext();
-
-  const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
     const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","source","issue"];
     const captured = {};
     keys.forEach(function(key){
@@ -75,24 +72,6 @@
     try{return JSON.parse(sessionStorage.getItem("joeSourceContext") || "{}")}catch(e){return {}}
   }
 
-  function decorateJourneyLinks(){
-    const ctx = sourceContext();
-    const area = storageGet();
-    document.querySelectorAll('a[href]').forEach(function(link){
-      const raw = link.getAttribute("href");
-      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("http")) return;
-      if(!/(campaign|event|have-your-say|preferences|your-area)/.test(raw)) return;
-      try{
-        const url = new URL(raw, window.location.href);
-        if(area && !url.searchParams.get("area")) url.searchParams.set("area",area);
-        Object.keys(ctx).forEach(function(key){
-          if(!url.searchParams.get(key)) url.searchParams.set(key,ctx[key]);
-        });
-        link.setAttribute("href", url.pathname.split("/").slice(-2).join("/").replace(/^.*\/(assets|plan|campaigns|events|news)\//, "$1/") + url.search + url.hash);
-      }catch(e){}
-    });
-  }
-
   function renderSourceContext(){
     const ctx = sourceContext();
     const source = ctx.utm_source || ctx.source;
@@ -107,8 +86,27 @@
       if(status) status.insertAdjacentElement("afterend",bar);
     }
     const campaign = ctx.utm_campaign ? " · " + ctx.utm_campaign.replace(/[-_]/g," ") : "";
-    bar.querySelector(".container").textContent = "You arrived from " + source.replace(/[-_]/g," ") + campaign + ".";
+    const inner = bar.querySelector(".container");
+    if(inner) inner.textContent = "You arrived from " + source.replace(/[-_]/g," ") + campaign + ".";
     bar.classList.add("visible");
+  }
+
+  function decorateJourneyLinks(){
+    const ctx = sourceContext();
+    const area = storageGet();
+    document.querySelectorAll('a[href]').forEach(function(link){
+      const raw = link.getAttribute("href");
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("http")) return;
+      if(!/(campaign|event|have-your-say|preferences|your-area)/.test(raw)) return;
+      try{
+        const url = new URL(raw, window.location.href);
+        if(area && !url.searchParams.get("area")) url.searchParams.set("area", area);
+        Object.keys(ctx).forEach(function(key){
+          if(!url.searchParams.get(key)) url.searchParams.set(key, ctx[key]);
+        });
+        link.setAttribute("href", url.pathname.replace(window.location.pathname.replace(/[^/]+$/,""), "") + url.search + url.hash);
+      }catch(e){}
+    });
   }
 
   function storageGet(){
