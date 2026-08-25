@@ -3,24 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Get help | Joe Bloggs MP</title>
+<title>Email preferences | Joe Bloggs MP</title>
 <link rel="stylesheet" href="assets/css/shared.css">
-
-<style>
-/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
-.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
-.mobile-nav.open{display:block}
-.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
-.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
-.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
-.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
-@media(min-width:1101px){.mobile-nav{display:none!important}}
-@media(max-width:1100px){
-  .site-header .nav{display:none!important}
-  .menu-button{display:block!important}
-}
-</style>
-
 </head>
 <body>
 <header class="site-header">
@@ -50,7 +34,6 @@
     <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
   </div>
 </header>
-
 <div class="area-status" id="areaStatus">
   <div class="container area-status-inner">
     <div>Showing local content for <strong id="areaStatusName"></strong></div>
@@ -60,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <div class="mobile-nav" id="mobileNav">
   <nav>
     <a href="index.html">Home</a>
@@ -78,41 +60,40 @@
     <a href="get-help.html" class="header-box help-button">Get help</a>
   </div>
 </div>
-<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=85')">
-  <div class="container"><div><h1>How can Joe help?</h1><p>Joe and his constituency team are here to help residents of Bloggs Town with casework and local issues.</p></div></div>
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>Your updates</h1><p>Choose what you want to hear about from Joe.</p></div></div>
 </section>
-
 <section class="section">
-  <div class="container two-col">
-    <div>
-      <h2>Ask Joe for help</h2>
-      <p class="lead">If you live in Bloggs Town, Joe and his team may be able to help with an issue involving a government department, public body or local service.</p>
-      <div class="list">
-        <div class="list-item">Housing</div><div class="list-item">Benefits and pensions</div>
-        <div class="list-item">NHS and healthcare</div><div class="list-item">Immigration and passports</div>
-        <div class="list-item">Council services</div><div class="list-item">Crime and policing</div>
+  <div class="container preference-wrap">
+    <h2>Choose your updates</h2>
+    <p class="lead" id="preferenceIntro">You’re in control of what Joe sends you. Pick the updates that are useful to you.</p>
+
+    <form id="preferenceForm">
+      <div class="preference-grid">
+        <div class="preference-option">
+          <input type="checkbox" id="prefLocal" name="local" checked>
+          <label for="prefLocal"><strong id="prefLocalTitle">Local updates</strong><span id="prefLocalText">News and activity from your part of Bloggs Town.</span></label>
+        </div>
+        <div class="preference-option">
+          <input type="checkbox" id="prefCampaigns" name="campaigns">
+          <label for="prefCampaigns"><strong>Campaigns</strong><span>Updates on local campaigns and opportunities to have your say.</span></label>
+        </div>
+        <div class="preference-option">
+          <input type="checkbox" id="prefEvents" name="events">
+          <label for="prefEvents"><strong>Events</strong><span>Surgeries, meetings, roundtables and events near you.</span></label>
+        </div>
+        <div class="preference-option">
+          <input type="checkbox" id="prefMonthly" name="monthly" checked>
+          <label for="prefMonthly"><strong>Joe’s monthly update</strong><span>A regular constituency-wide roundup from Joe.</span></label>
+        </div>
       </div>
-    </div>
-    <form>
-      <div class="form-grid">
-        <input placeholder="First name"><input placeholder="Second name">
-        <input class="full" type="email" placeholder="Email address">
-        <input class="full" placeholder="Postcode">
-        <select class="full"><option>What do you need help with?</option><option>Housing</option><option>Benefits and pensions</option><option>NHS and healthcare</option><option>Immigration and passports</option><option>Something else</option></select>
-        <textarea class="full" placeholder="Tell Joe's team what has happened"></textarea>
-        <button class="btn">Send request</button>
+      <div class="preference-save">
+        <button class="btn" type="submit">Save my preferences</button>
+        <span class="preference-confirm" id="preferenceConfirm">Preferences saved.</span>
       </div>
-      <p class="form-note">Demo form only. In the NationBuilder version this would submit into the correct casework workflow.</p>
     </form>
   </div>
 </section>
-<section class="section alt" id="surgeries">
-  <div class="container two-col">
-    <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1200&q=85')"></div>
-    <div><h2>Meet Joe at a surgery</h2><p class="lead">Joe holds regular constituency surgeries so residents can discuss issues with him directly.</p><p><strong>Next surgery</strong><br>Friday 11 September<br>Bloggs Town Library</p><a class="btn" href="#">Request an appointment</a></div>
-  </div>
-</section>
-
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -123,14 +104,12 @@
         </div>
       </div>
       <div><h4>Joe</h4><a href="about.html">About Joe</a><a href="our-plan.html">Our plan</a><a href="campaigns.html">Campaigns</a><a href="news.html">News</a></div>
-      <div><h4>Bloggs Town</h4><a href="your-area.html">Your area</a><a href="events.html">Events</a><a href="news.html">Local updates</a><a href="have-your-say.html">Residents survey</a><a href="preferences.html">Email preferences</a></div>
+      <div><h4>Bloggs Town</h4><a href="your-area.html">Your area</a><a href="events.html">Events</a><a href="news.html">Local updates</a><a href="have-your-say.html">Residents survey</a></div>
       <div><h4>Get involved</h4><a href="get-help.html">Get help</a><a href="get-help.html#surgeries">Surgeries</a><a href="donate.html">Donate</a><a href="get-help.html#contact">Contact</a></div>
     </div>
     <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
   </div>
 </footer>
-
-
 <script>
 (function () {
   function initMobileMenu() {
@@ -162,7 +141,7 @@
   }
 })();
 </script>
-
-<script src="assets/js/personalisation.js?v=24"></script>
+<script src="assets/js/personalisation.js?v=26"></script>
+<script src="assets/js/forms.js?v=26"></script>
 </body>
 </html>

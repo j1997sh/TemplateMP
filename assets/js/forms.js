@@ -24,7 +24,7 @@
       setData("lastCampaignUpdates", data.get("updates") ? "yes" : "no");
       setData("lastCampaignFirstName", data.get("first_name") || "");
 
-      const url = new URL("campaign-thanks.html", window.location.href);
+      const url = new URL("thanks.html", window.location.href);
       if(issue) url.searchParams.set("issue", issue);
       if(area) url.searchParams.set("area", area);
       window.location.href = url.toString();
@@ -50,31 +50,31 @@
       label: "better GP access",
       nextTitle: "Tell Joe about local healthcare",
       nextText: "A short residents survey will help Joe understand how easy or difficult it is to access care locally.",
-      nextHref: "have-your-say.html?issue=health"
+      nextHref: "../have-your-say.html?issue=health"
     },
     business: {
       label: "local business",
       nextTitle: "Are you a local business?",
       nextText: "Tell Joe what would make it easier to invest, employ and grow in Bloggs Town.",
-      nextHref: "have-your-say.html?issue=business"
+      nextHref: "../have-your-say.html?issue=business"
     },
     crime: {
       label: "safer neighbourhoods",
       nextTitle: "Tell Joe what is happening near you",
       nextText: "Share the crime or antisocial behaviour issue you think needs the most attention.",
-      nextHref: "have-your-say.html?issue=crime"
+      nextHref: "../have-your-say.html?issue=crime"
     },
     transport: {
       label: "better roads and transport",
       nextTitle: "Where is the biggest transport problem?",
       nextText: "Tell Joe which local road, junction or transport issue should be prioritised.",
-      nextHref: "have-your-say.html?issue=transport"
+      nextHref: "../have-your-say.html?issue=transport"
     },
     "local-services": {
       label: "protecting local services",
       nextTitle: "Which local service matters most?",
       nextText: "Tell Joe what residents in your community most need protected or improved.",
-      nextHref: "have-your-say.html?issue=local-services"
+      nextHref: "../have-your-say.html?issue=local-services"
     }
   };
 
@@ -82,7 +82,7 @@
     label: "this local campaign",
     nextTitle: "Tell Joe what matters",
     nextText: "Take a short residents survey and help shape Joe’s local priorities.",
-    nextHref: "have-your-say.html"
+    nextHref: "../have-your-say.html"
   };
 
   let firstName = "";
@@ -160,7 +160,7 @@
       setSession("lastEventFirstName", data.get("first_name") || "");
       setSession("lastEventUpdates", data.get("updates") ? "yes" : "no");
 
-      const url = new URL("event-thanks.html", window.location.href);
+      const url = new URL("thanks.html", window.location.href);
       if(eventSlug) url.searchParams.set("event", eventSlug);
       if(issue) url.searchParams.set("issue", issue);
       if(visitorArea) url.searchParams.set("area", visitorArea);
@@ -207,37 +207,37 @@
     business:{
       title:"Tell Joe what local businesses need",
       text:"A short business question helps Joe understand the pressures local employers are facing.",
-      href:"have-your-say.html?issue=business"
+      href:"../have-your-say.html?issue=business"
     },
     transport:{
       title:"Report the transport issue that matters most",
       text:"Tell Joe whether roads, buses, congestion or junction safety should be the priority.",
-      href:"have-your-say.html?issue=transport"
+      href:"../have-your-say.html?issue=transport"
     },
     crime:{
       title:"What is making residents feel less safe?",
       text:"Share the local safety issue you think Joe should focus on next.",
-      href:"have-your-say.html?issue=crime"
+      href:"../have-your-say.html?issue=crime"
     },
     "local-services":{
       title:"Which local service matters most?",
       text:"Tell Joe what residents in your community most need protected or improved.",
-      href:"have-your-say.html?issue=local-services"
+      href:"../have-your-say.html?issue=local-services"
     },
     casework:{
       title:"Need to send Joe more detail?",
       text:"Use the casework page if you need help with a specific constituency issue.",
-      href:"get-help.html"
+      href:"../get-help.html"
     },
     general:{
       title:"What should Joe focus on next?",
       text:"Take a short residents survey and help shape Joe’s local priorities.",
-      href:"have-your-say.html"
+      href:"../have-your-say.html"
     }
   }[issue] || {
     title:"What should Joe focus on next?",
     text:"Take a short residents survey and help shape Joe’s local priorities.",
-    href:"have-your-say.html"
+    href:"../have-your-say.html"
   };
 
   const nextTitle = document.getElementById("eventNextTitle");
@@ -326,4 +326,78 @@
     if(intro) intro.textContent = "Tell Joe what is working, what is not and what you want him to focus on in " + areaName + ".";
     if(textarea) textarea.placeholder = "What would you most like Joe to change or focus on in " + areaName + "?";
   }
+})();
+
+
+/* ---- preference centre ---- */
+(function(){
+  const form = document.getElementById("preferenceForm");
+  if(!form) return;
+  const names={"town-centre":"Bloggs Town Centre","north-bloggs":"North Bloggs","little-bloggs":"Little Bloggs","villages":"The Villages"};
+  let area="";
+  try{area=sessionStorage.getItem("joeArea")||""}catch(e){}
+  if(names[area]){
+    const title=document.getElementById("prefLocalTitle");
+    const text=document.getElementById("prefLocalText");
+    const intro=document.getElementById("preferenceIntro");
+    if(title) title.textContent="Updates from "+names[area];
+    if(text) text.textContent="News, campaigns and events specifically relevant to "+names[area]+".";
+    if(intro) intro.textContent="Choose what you want to hear about, including updates specifically from "+names[area]+".";
+  }
+
+  try{
+    const saved=JSON.parse(sessionStorage.getItem("joePreferences")||"{}");
+    ["local","campaigns","events","monthly"].forEach(function(k){
+      if(typeof saved[k]==="boolean"){
+        const el=form.querySelector('[name="'+k+'"]');
+        if(el) el.checked=saved[k];
+      }
+    });
+  }catch(e){}
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    const prefs={};
+    ["local","campaigns","events","monthly"].forEach(function(k){
+      const el=form.querySelector('[name="'+k+'"]');
+      prefs[k]=!!(el&&el.checked);
+    });
+    try{sessionStorage.setItem("joePreferences",JSON.stringify(prefs))}catch(e){}
+    const confirm=document.getElementById("preferenceConfirm");
+    if(confirm) confirm.classList.add("visible");
+  });
+})();
+
+/* ---- soft volunteer prompts ---- */
+(function(){
+  document.querySelectorAll("[data-volunteer-prompt]").forEach(function(prompt){
+    const selected=[];
+    prompt.querySelectorAll("[data-volunteer]").forEach(function(button){
+      button.addEventListener("click",function(){
+        button.classList.toggle("selected");
+        const value=button.dataset.volunteer;
+        const i=selected.indexOf(value);
+        if(i>=0) selected.splice(i,1); else selected.push(value);
+        try{sessionStorage.setItem("joeVolunteerInterests",JSON.stringify(selected))}catch(e){}
+        const done=prompt.querySelector("[data-volunteer-done]");
+        if(done) done.classList.toggle("visible",selected.length>0);
+      });
+    });
+  });
+})();
+
+/* ---- reveal volunteer prompt after survey engagement ---- */
+(function(){
+  const surveyForms=document.querySelectorAll("form");
+  const volunteerSection=document.getElementById("surveyVolunteerSection");
+  if(!volunteerSection) return;
+  surveyForms.forEach(function(form){
+    form.addEventListener("submit",function(){
+      setTimeout(function(){
+        volunteerSection.style.display="";
+        const inner=document.getElementById("surveyVolunteerPrompt");
+        if(inner) inner.style.display="";
+      },250);
+    });
+  });
 })();

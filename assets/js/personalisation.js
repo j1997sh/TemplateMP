@@ -51,6 +51,66 @@
     }
   };
 
+
+  function captureSourceContext(){
+    captureSourceContext();
+  renderSourceContext();
+
+  const params = new URLSearchParams(window.location.search);
+    const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","source","issue"];
+    const captured = {};
+    keys.forEach(function(key){
+      const value = params.get(key);
+      if(value) captured[key] = value;
+    });
+    if(Object.keys(captured).length){
+      try{
+        const existing = JSON.parse(sessionStorage.getItem("joeSourceContext") || "{}");
+        sessionStorage.setItem("joeSourceContext", JSON.stringify(Object.assign(existing,captured)));
+      }catch(e){}
+    }
+  }
+
+  function sourceContext(){
+    try{return JSON.parse(sessionStorage.getItem("joeSourceContext") || "{}")}catch(e){return {}}
+  }
+
+  function decorateJourneyLinks(){
+    const ctx = sourceContext();
+    const area = storageGet();
+    document.querySelectorAll('a[href]').forEach(function(link){
+      const raw = link.getAttribute("href");
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("http")) return;
+      if(!/(campaign|event|have-your-say|preferences|your-area)/.test(raw)) return;
+      try{
+        const url = new URL(raw, window.location.href);
+        if(area && !url.searchParams.get("area")) url.searchParams.set("area",area);
+        Object.keys(ctx).forEach(function(key){
+          if(!url.searchParams.get(key)) url.searchParams.set(key,ctx[key]);
+        });
+        link.setAttribute("href", url.pathname.split("/").slice(-2).join("/").replace(/^.*\/(assets|plan|campaigns|events|news)\//, "$1/") + url.search + url.hash);
+      }catch(e){}
+    });
+  }
+
+  function renderSourceContext(){
+    const ctx = sourceContext();
+    const source = ctx.utm_source || ctx.source;
+    if(!source) return;
+    let bar = document.getElementById("sourceContextBar");
+    if(!bar){
+      bar = document.createElement("div");
+      bar.id = "sourceContextBar";
+      bar.className = "source-context";
+      bar.innerHTML = '<div class="container"></div>';
+      const status = document.getElementById("areaStatus");
+      if(status) status.insertAdjacentElement("afterend",bar);
+    }
+    const campaign = ctx.utm_campaign ? " · " + ctx.utm_campaign.replace(/[-_]/g," ") : "";
+    bar.querySelector(".container").textContent = "You arrived from " + source.replace(/[-_]/g," ") + campaign + ".";
+    bar.classList.add("visible");
+  }
+
   function storageGet(){
     try { return sessionStorage.getItem("joeArea"); } catch(e) { return null; }
   }
@@ -144,6 +204,55 @@
     });
   }
 
+
+  const HOME_LOCAL = {
+    "town-centre":{
+      news:["Joe meets traders on Bloggs Town high street","Businesses raise empty units, parking and the cost of investing in the town centre.","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=84"],
+      campaign:["Bring empty shops back into use","Practical action on vacant units in Bloggs Town Centre.","campaigns/high-street.html","https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=84"],
+      event:["Bloggs Town business roundtable","Monday 21 September · Bloggs Business Centre","events/business-roundtable.html","https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=84"]
+    },
+    "north-bloggs":{
+      news:["Joe presses for more GP appointments in North Bloggs","Residents say access to appointments remains one of their biggest local concerns.","https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=84"],
+      campaign:["Safer streets in North Bloggs","Back visible neighbourhood policing and stronger action on antisocial behaviour.","campaigns/safer-streets.html","https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=84"],
+      event:["North Bloggs residents meeting","Thursday 15 October · Community Centre","events/north-residents-meeting.html","https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=84"]
+    },
+    "little-bloggs":{
+      news:["Joe takes Little Bloggs road concerns to local leaders","Potholes, congestion and junction safety top the agenda after resident feedback.","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+      campaign:["Fix Little Bloggs’ roads","Tell Joe where potholes, congestion and unsafe junctions need action first.","campaigns/roads.html","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+      event:["Public meeting on local transport","Thursday 8 October · Community Hall","events/transport-meeting.html","https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=84"]
+    },
+    "villages":{
+      news:["Protecting community services across the villages","Joe meets residents to discuss transport, local facilities and access to essential services.","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"],
+      campaign:["Protect rural bus links","Support reliable public transport for residents without access to a car.","campaigns/roads.html","https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=84"],
+      event:["Village services forum","Wednesday 21 October · Village Hall","events/village-services-forum.html","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"]
+    }
+  };
+
+  function renderHomeLocal(areaKey){
+    const wrap = document.getElementById("homeLocalHub");
+    const cfg = HOME_LOCAL[areaKey];
+    const area = AREAS[areaKey];
+    if(!wrap || !cfg || !area) return;
+    wrap.classList.add("visible");
+    document.getElementById("homeLocalTitle").textContent = "Your area: " + area.name;
+    document.getElementById("homeLocalIntro").textContent = "The latest news, campaign and event selected for " + area.name + ".";
+    document.getElementById("homeLocalHubLink").href = "your-area.html?area=" + areaKey;
+
+    document.getElementById("homeLocalNewsImage").style.backgroundImage = 'url("' + cfg.news[2] + '")';
+    document.getElementById("homeLocalNewsTitle").textContent = cfg.news[0];
+    document.getElementById("homeLocalNewsText").textContent = cfg.news[1];
+
+    document.getElementById("homeLocalCampaignImage").style.backgroundImage = 'url("' + cfg.campaign[3] + '")';
+    document.getElementById("homeLocalCampaignTitle").textContent = cfg.campaign[0];
+    document.getElementById("homeLocalCampaignText").textContent = cfg.campaign[1];
+    document.getElementById("homeLocalCampaignLink").href = cfg.campaign[2] + "?area=" + areaKey;
+
+    document.getElementById("homeLocalEventImage").style.backgroundImage = 'url("' + cfg.event[3] + '")';
+    document.getElementById("homeLocalEventTitle").textContent = cfg.event[0];
+    document.getElementById("homeLocalEventText").textContent = cfg.event[1];
+    document.getElementById("homeLocalEventLink").href = cfg.event[2] + "?area=" + areaKey;
+  }
+
   function setArea(areaKey){
     if(!AREAS[areaKey]) return;
     storageSet(areaKey);
@@ -224,6 +333,7 @@
     sortAreaGrid(areaKey);
     personaliseContextSurveys(areaKey);
     pagePersonalisation(areaKey);
+    renderHomeLocal(areaKey);
   }
 
   function showInvalid(input){
@@ -301,10 +411,14 @@
     });
   }
 
+  captureSourceContext();
+  renderSourceContext();
+
   const params = new URLSearchParams(window.location.search);
   const queryArea = params.get("area");
   const initial = AREAS[queryArea] ? queryArea : storageGet();
   if(initial && AREAS[initial]) applyArea(initial);
+  decorateJourneyLinks();
   initContextSurveys();
 
   const areaButton = document.getElementById("areaButton");
