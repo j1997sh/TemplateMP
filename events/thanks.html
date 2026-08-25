@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Event RSVP | Joe Bloggs MP</title>
-<link rel="stylesheet" href="../assets/css/shared.css?v=31">
+<title>You’re booked in | Joe Bloggs MP</title>
+<link rel="stylesheet" href="../assets/css/shared.css?v=32">
 </head>
-<body>
+<body data-thankyou-context="event">
 <header class="site-header">
   <div class="container header-inner">
     <a href="../index.html" class="logo">
@@ -60,45 +60,72 @@
     <a href="../get-help.html" class="header-box help-button">Get help</a>
   </div>
 </div>
+
 <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=2000&q=85')">
-  <div class="container"><div><h1>Thanks for signing up</h1><p>Your place has been reserved in this demo journey.</p></div></div>
+  <div class="container"><div><h1>You’re booked in</h1><p>Your place has been reserved. We’ll keep this journey focused on what’s most useful next.</p></div></div>
 </section>
 
 <section class="section">
-  <div class="container event-thanks">
-    <div class="booking-card">
-      <h2 id="bookingHeading">You’re booked in.</h2>
-      <p id="bookingMeta">We’ll send you the event details.</p>
+  <div class="container thankyou-shell">
+    <div class="thankyou-confirm">
+      <h2 id="thankyouHeading">Thanks.</h2>
+      <p id="thankyouSummary">Your action has been recorded in this demo journey.</p>
     </div>
 
-    <div class="next-step-grid">
-      <div class="next-step">
-        <h3 id="eventNextTitle">One more useful thing</h3>
-        <p id="eventNextText">Tell Joe what matters most where you live.</p>
-        <a class="btn" id="eventNextButton" href="../have-your-say.html">Have your say</a>
-      </div>
+    <div class="thankyou-grid">
+      <article class="thankyou-card">
+        <div class="thankyou-card-image" id="thankyouStoryImage"></div>
+        <div class="thankyou-card-body">
+          <div class="eyebrow">Relevant local story</div>
+          <h3 id="thankyouStoryTitle">Latest local update</h3>
+          <p id="thankyouStoryText"></p>
+          <a class="btn navy" id="thankyouStoryLink" href="../news.html">Read more</a>
+        </div>
+      </article>
 
-      <div class="next-step">
-        <h3 id="localEventsTitle">More happening near you</h3>
-        <p id="localEventsText">See other events and local activity in your area.</p>
-        <a class="btn navy" href="../events.html">See more events</a>
+      <article class="thankyou-card">
+        <div class="thankyou-card-image" id="thankyouNextImage"></div>
+        <div class="thankyou-card-body">
+          <div class="eyebrow" id="thankyouNextEyebrow">Next step</div>
+          <h3 id="thankyouNextTitle">One more useful thing</h3>
+          <p id="thankyouNextText"></p>
+          <a class="btn navy" id="thankyouNextLink" href="../have-your-say.html">Continue</a>
+        </div>
+      </article>
+
+      <article class="thankyou-card">
+        <div class="thankyou-card-image" id="thankyouLocalImage"></div>
+        <div class="thankyou-card-body">
+          <div class="eyebrow">Near you</div>
+          <h3 id="thankyouLocalTitle">What’s happening locally</h3>
+          <p id="thankyouLocalText"></p>
+          <a class="btn navy" id="thankyouLocalLink" href="../your-area.html">Open your local hub</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="volunteer-prompt" data-volunteer-prompt id="thankyouVolunteer">
+      <h3>Want to help locally?</h3>
+      <p>If you’d like to do a little more, choose any ways you could help. There’s no commitment.</p>
+      <div class="volunteer-options">
+        <button class="volunteer-chip" type="button" data-volunteer="leaflets">Deliver a few leaflets</button>
+        <button class="volunteer-chip" type="button" data-volunteer="events">Help at an event</button>
+        <button class="volunteer-chip" type="button" data-volunteer="online">Help online</button>
+        <button class="volunteer-chip" type="button" data-volunteer="poster">Display a poster</button>
+        <button class="volunteer-chip" type="button" data-volunteer="skills">Offer professional skills</button>
+      </div>
+      <div class="volunteer-done" data-volunteer-done>Thanks — we’ve noted what you’d be interested in helping with.</div>
+    </div>
+
+    <div class="thankyou-share" id="thankyouShare">
+      <h3>Know someone else who cares about this?</h3>
+      <p>Share the campaign, event or survey with someone locally.</p>
+      <div class="share-row">
+        <button class="btn navy" type="button" data-share="copy">Copy link</button>
+        <a class="btn" id="thankyouShareEmail" href="#">Share by email</a>
       </div>
     </div>
-  
-<div class="volunteer-prompt" data-volunteer-prompt>
-  <h3>Want to help locally?</h3>
-  <p id="volunteerPromptCopy">If you’d like to do a little more, choose any ways you could help. There’s no commitment.</p>
-  <div class="volunteer-options">
-    <button class="volunteer-chip" type="button" data-volunteer="leaflets">Deliver a few leaflets</button>
-    <button class="volunteer-chip" type="button" data-volunteer="events">Help at an event</button>
-    <button class="volunteer-chip" type="button" data-volunteer="online">Help online</button>
-    <button class="volunteer-chip" type="button" data-volunteer="poster">Display a poster</button>
-    <button class="volunteer-chip" type="button" data-volunteer="skills">Offer professional skills</button>
   </div>
-  <div class="volunteer-done" data-volunteer-done>Thanks — we’ve noted what you’d be interested in helping with.</div>
-</div>
-
-</div>
 </section>
 
 <footer>
@@ -112,7 +139,7 @@
       </div>
       <div><h4>Joe</h4><a href="../about.html">About Joe</a><a href="../our-plan.html">Our plan</a><a href="../campaigns.html">Campaigns</a><a href="../news.html">News</a></div>
       <div><h4>Bloggs Town</h4><a href="../your-area.html">Your area</a><a href="../events.html">Events</a><a href="../news.html">Local updates</a><a href="../have-your-say.html">Residents survey</a><a href="../preferences.html">Email preferences</a></div>
-      <div><h4>Get involved</h4><a href="../get-help.html">Get help</a><a href="../get-help.html#surgeries">Surgeries</a><a href="../donate.html">Donate</a><a href="../get-help.html#contact">Contact</a></div>
+      <div><h4>Get involved</h4><a href="../get-help.html">Get help</a><a href="get-help.html#surgeries">Surgeries</a><a href="../donate.html">Donate</a><a href="get-help.html#contact">Contact</a></div>
     </div>
     <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
   </div>
@@ -148,8 +175,7 @@
   }
 })();
 </script>
-
-<script src="../assets/js/personalisation.js?v=31"></script>
-<script src="../assets/js/forms.js?v=31"></script>
+<script src="../assets/js/personalisation.js?v=32"></script>
+<script src="../assets/js/forms.js?v=32"></script>
 </body>
 </html>

@@ -435,11 +435,171 @@
       sessionStorage.setItem("joePreferences",JSON.stringify(prefs));
       sessionStorage.setItem("joeSignedUp","yes");
     }catch(e){}
-    const thanks=document.getElementById("signupThanks");
-    const copy=document.getElementById("signupThanksText");
-    if(copy && names[area]) copy.textContent="We’ll prioritise the updates you selected for "+names[area]+".";
-    if(thanks) thanks.classList.add("visible");
-    const button=form.querySelector('button[type="submit"]');
-    if(button){button.textContent="Signed up";button.disabled=true;}
+    try{ sessionStorage.setItem("lastActionType","signup"); }catch(e){}
+    window.location.href = "sign-up-thanks.html";
+  });
+})();
+
+
+/* ---- standard thank-you renderer ---- */
+(function(){
+  const body=document.body;
+  if(!body || !body.dataset.thankyouContext) return;
+
+  const context=body.dataset.thankyouContext;
+  const areaNames={"town-centre":"Bloggs Town Centre","north-bloggs":"North Bloggs","little-bloggs":"Little Bloggs","villages":"The Villages"};
+  let area="";
+  try{area=sessionStorage.getItem("joeArea")||""}catch(e){}
+  const areaName=areaNames[area]||"Bloggs Town";
+
+  const localData={
+    "town-centre":{
+      story:["Joe meets traders on Bloggs Town high street","Businesses raise empty units, parking and the cost of investing in the town centre.","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=84"],
+      local:["Bloggs Town business roundtable","Monday 21 September · Bloggs Business Centre","events/business-roundtable.html","https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=84"]
+    },
+    "north-bloggs":{
+      story:["Joe presses for more GP appointments in North Bloggs","Residents say access to appointments remains one of their biggest local concerns.","https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=84"],
+      local:["North Bloggs residents meeting","Thursday 15 October · Community Centre","events/north-residents-meeting.html","https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=84"]
+    },
+    "little-bloggs":{
+      story:["Joe takes Little Bloggs road concerns to local leaders","Potholes, congestion and junction safety top the agenda after resident feedback.","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=84"],
+      local:["Public meeting on local transport","Thursday 8 October · Community Hall","events/transport-meeting.html","https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=84"]
+    },
+    "villages":{
+      story:["Protecting community services across the villages","Joe meets residents to discuss transport, local facilities and access to essential services.","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"],
+      local:["Village services forum","Wednesday 21 October · Village Hall","events/village-services-forum.html","https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=84"]
+    }
+  }[area] || {
+    story:["Latest from Joe","See Joe’s latest work across Bloggs Town.","https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=900&q=84"],
+    local:["See what’s happening near you","Find local events, campaigns and updates.","your-area.html","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=84"]
+  };
+
+  function setText(id,val){const e=document.getElementById(id);if(e)e.textContent=val}
+  function setHref(id,val){const e=document.getElementById(id);if(e)e.href=val}
+  function setImage(id,val){const e=document.getElementById(id);if(e)e.style.backgroundImage='url("'+val+'")'}
+
+  setText("thankyouStoryTitle",localData.story[0]);
+  setText("thankyouStoryText",localData.story[1]);
+  setImage("thankyouStoryImage",localData.story[2]);
+
+  setText("thankyouLocalTitle",localData.local[0]);
+  setText("thankyouLocalText",localData.local[1]);
+  setHref("thankyouLocalLink",localData.local[2]);
+  setImage("thankyouLocalImage",localData.local[3]);
+
+  if(area){
+    setText("thankyouLocalText",localData.local[1]+" Selected because you’re in "+areaName+".");
+  }
+
+  let next={
+    eyebrow:"Next step",
+    title:"Tell Joe what should come next",
+    text:"Take a short residents survey and help shape Joe’s local priorities.",
+    href:"have-your-say.html",
+    image:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=84"
+  };
+
+  if(context==="campaign"){
+    let issue="general";
+    try{issue=sessionStorage.getItem("lastCampaignIssue")||"general"}catch(e){}
+    next={
+      eyebrow:"Keep the momentum going",
+      title:"Tell Joe why this issue matters",
+      text:"A short answer helps Joe understand what residents want him to focus on next.",
+      href:"../have-your-say.html?issue="+encodeURIComponent(issue),
+      image:"https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=84"
+    };
+    setText("thankyouHeading","Thanks for backing the campaign.");
+    setText("thankyouSummary",area ? "Joe will keep you updated on this campaign and what it means for "+areaName+"." : "Joe will keep you updated as this campaign develops.");
+  } else if(context==="event"){
+    next={
+      eyebrow:"Another useful action",
+      title:"What should Joe ask about at the event?",
+      text:"Tell Joe what you most want him to raise or focus on.",
+      href:"../have-your-say.html",
+      image:"https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=84"
+    };
+    setText("thankyouHeading","You’re booked in.");
+    let title="",date="",location="";
+    try{
+      title=sessionStorage.getItem("lastEventTitle")||"";
+      date=sessionStorage.getItem("lastEventDate")||"";
+      location=sessionStorage.getItem("lastEventLocation")||"";
+    }catch(e){}
+    setText("thankyouSummary",[title,date,location].filter(Boolean).join(" · ") || "We’ll send you the event details.");
+  } else if(context==="survey"){
+    let answer="",issue="";
+    try{answer=sessionStorage.getItem("contextAnswer")||"";issue=sessionStorage.getItem("contextIssue")||""}catch(e){}
+    next={
+      eyebrow:"Related campaign",
+      title:"See what Joe is doing on this",
+      text:"Your answer can lead straight into the relevant local campaign.",
+      href: issue==="transport" ? "campaigns/roads.html" : issue==="health" ? "campaigns/gp.html" : "campaigns.html",
+      image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=84"
+    };
+    setText("thankyouHeading","Thanks for having your say.");
+    setText("thankyouSummary",answer ? "You told Joe: “"+answer+"”. He can now compare that with what other residents are saying." : "Joe can now compare your response with what other residents are saying.");
+  } else if(context==="signup"){
+    next={
+      eyebrow:"Choose your updates",
+      title:"Fine-tune what you receive",
+      text:"You can change your local, campaign, event and monthly update preferences at any time.",
+      href:"preferences.html",
+      image:"https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=84"
+    };
+    setText("thankyouHeading","You’re signed up.");
+    setText("thankyouSummary",area ? "We’ll keep your updates relevant to "+areaName+" and the choices you made." : "We’ll keep your updates relevant to the choices you made.");
+  } else if(context==="donation"){
+    next={
+      eyebrow:"Stay connected",
+      title:"Choose the updates you want",
+      text:"If you’d like, you can choose which local and campaign updates you receive.",
+      href:"preferences.html",
+      image:"https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=900&q=84"
+    };
+    setText("thankyouHeading","Thank you for your support.");
+    setText("thankyouSummary","Your support helps Joe campaign, communicate with residents and organise locally.");
+  }
+
+  setText("thankyouNextEyebrow",next.eyebrow);
+  setText("thankyouNextTitle",next.title);
+  setText("thankyouNextText",next.text);
+  setHref("thankyouNextLink",next.href);
+  setImage("thankyouNextImage",next.image);
+
+  if(area){
+    const href=document.getElementById("thankyouLocalLink");
+    if(href){
+      const u=new URL(href.getAttribute("href"),window.location.href);
+      u.searchParams.set("area",area);
+      href.setAttribute("href",u.pathname.split("/").slice(-2).join("/")+u.search);
+    }
+  }
+
+  const email=document.getElementById("thankyouShareEmail");
+  if(email){
+    email.href="mailto:?subject="+encodeURIComponent("Thought you might be interested in this")+"&body="+encodeURIComponent(window.location.href);
+  }
+  const copy=document.querySelector('[data-share="copy"]');
+  if(copy){
+    copy.addEventListener("click",function(){
+      navigator.clipboard?.writeText(window.location.href);
+      copy.textContent="Link copied";
+    });
+  }
+})();
+
+/* ---- survey thank-you redirect ---- */
+(function(){
+  if(document.body.dataset.thankyouContext) return;
+  const section=document.getElementById("surveyVolunteerSection");
+  if(!section) return;
+  document.querySelectorAll("form").forEach(function(form){
+    form.addEventListener("submit",function(){
+      setTimeout(function(){
+        try{sessionStorage.setItem("lastActionType","survey")}catch(e){}
+        window.location.href="survey-thanks.html";
+      },450);
+    });
   });
 })();

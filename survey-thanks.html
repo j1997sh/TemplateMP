@@ -3,26 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Have your say | Joe Bloggs MP</title>
+<title>Thanks for having your say | Joe Bloggs MP</title>
 <link rel="stylesheet" href="assets/css/shared.css?v=32">
-
-<style>
-/* Mobile menu: kept inline so it works on every page even if cached CSS is stale */
-.mobile-nav{display:none;background:#fff;border-bottom:1px solid #e6eaf0;position:relative;z-index:50}
-.mobile-nav.open{display:block}
-.mobile-nav nav{display:flex;flex-direction:column;padding:8px 20px 4px}
-.mobile-nav nav a{display:block;padding:14px 0;border-bottom:1px solid #edf0f4;font-weight:800;color:#08254a}
-.mobile-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 20px 18px}
-.mobile-nav-actions .header-box{width:100%;height:42px;min-height:42px}
-@media(min-width:1101px){.mobile-nav{display:none!important}}
-@media(max-width:1100px){
-  .site-header .nav{display:none!important}
-  .menu-button{display:block!important}
-}
-</style>
-
 </head>
-<body>
+<body data-thankyou-context="survey">
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo">
@@ -50,7 +34,6 @@
     <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mobileNav">Menu</button>
   </div>
 </header>
-
 <div class="area-status" id="areaStatus">
   <div class="container area-status-inner">
     <div>Showing local content for <strong id="areaStatusName"></strong></div>
@@ -60,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <div class="mobile-nav" id="mobileNav">
   <nav>
     <a href="index.html">Home</a>
@@ -78,49 +60,73 @@
     <a href="get-help.html" class="header-box help-button">Get help</a>
   </div>
 </div>
-<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=2000&q=85')">
-  <div class="container"><div><h1>What matters to you?</h1><p>Tell Joe what is working, what is not and what you want him to focus on for Bloggs Town.</p></div></div>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=2000&q=85')">
+  <div class="container"><div><h1>Thanks for having your say</h1><p>Joe uses resident feedback to shape the issues he focuses on.</p></div></div>
 </section>
 
 <section class="section">
-  <div class="container two-col">
-    <div>
-      <h2 id="surveyHeading">Tell Joe what matters</h2>
-      <p class="lead" id="surveyIntro">Joe wants to hear directly from residents about the issues affecting their families, neighbourhoods and communities.</p>
-      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85');margin-top:28px"></div>
+  <div class="container thankyou-shell">
+    <div class="thankyou-confirm">
+      <h2 id="thankyouHeading">Thanks.</h2>
+      <p id="thankyouSummary">Your action has been recorded in this demo journey.</p>
     </div>
-    <form>
-      <div class="form-grid">
-        <input placeholder="First name"><input placeholder="Second name">
-        <input type="email" placeholder="Email address"><input placeholder="Postcode">
-        <select class="full" id="issueSelect"><option>Which issue matters most to you?</option><option>Healthcare</option><option>Crime</option><option>Roads and transport</option><option>Housing</option><option>Local business and high streets</option></select>
-        <textarea class="full" id="surveyTextarea" placeholder="What would you most like Joe to change or focus on?"></textarea>
-        <button class="btn">Send my views</button>
+
+    <div class="thankyou-grid">
+      <article class="thankyou-card">
+        <div class="thankyou-card-image" id="thankyouStoryImage"></div>
+        <div class="thankyou-card-body">
+          <div class="eyebrow">Relevant local story</div>
+          <h3 id="thankyouStoryTitle">Latest local update</h3>
+          <p id="thankyouStoryText"></p>
+          <a class="btn navy" id="thankyouStoryLink" href="news.html">Read more</a>
+        </div>
+      </article>
+
+      <article class="thankyou-card">
+        <div class="thankyou-card-image" id="thankyouNextImage"></div>
+        <div class="thankyou-card-body">
+          <div class="eyebrow" id="thankyouNextEyebrow">Next step</div>
+          <h3 id="thankyouNextTitle">One more useful thing</h3>
+          <p id="thankyouNextText"></p>
+          <a class="btn navy" id="thankyouNextLink" href="have-your-say.html">Continue</a>
+        </div>
+      </article>
+
+      <article class="thankyou-card">
+        <div class="thankyou-card-image" id="thankyouLocalImage"></div>
+        <div class="thankyou-card-body">
+          <div class="eyebrow">Near you</div>
+          <h3 id="thankyouLocalTitle">What’s happening locally</h3>
+          <p id="thankyouLocalText"></p>
+          <a class="btn navy" id="thankyouLocalLink" href="your-area.html">Open your local hub</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="volunteer-prompt" data-volunteer-prompt id="thankyouVolunteer">
+      <h3>Want to help locally?</h3>
+      <p>If you’d like to do a little more, choose any ways you could help. There’s no commitment.</p>
+      <div class="volunteer-options">
+        <button class="volunteer-chip" type="button" data-volunteer="leaflets">Deliver a few leaflets</button>
+        <button class="volunteer-chip" type="button" data-volunteer="events">Help at an event</button>
+        <button class="volunteer-chip" type="button" data-volunteer="online">Help online</button>
+        <button class="volunteer-chip" type="button" data-volunteer="poster">Display a poster</button>
+        <button class="volunteer-chip" type="button" data-volunteer="skills">Offer professional skills</button>
       </div>
-    </form>
+      <div class="volunteer-done" data-volunteer-done>Thanks — we’ve noted what you’d be interested in helping with.</div>
+    </div>
+
+    <div class="thankyou-share" id="thankyouShare">
+      <h3>Know someone else who cares about this?</h3>
+      <p>Share the campaign, event or survey with someone locally.</p>
+      <div class="share-row">
+        <button class="btn navy" type="button" data-share="copy">Copy link</button>
+        <a class="btn" id="thankyouShareEmail" href="#">Share by email</a>
+      </div>
+    </div>
   </div>
 </section>
-<section class="stat-band">
-  <div class="container stat-grid">
-    <div class="stat"><strong>4</strong><span>local areas covered</span></div>
-    <div class="stat"><strong>6</strong><span>core local priorities</span></div>
-    <div class="stat"><strong>1</strong><span>constituency-wide residents survey</span></div>
-  </div>
-</section>
-<section class="section" id="surveyVolunteerSection" style="display:none"><div class="container">
-<div class="volunteer-prompt" id="surveyVolunteerPrompt" style="display:none" data-volunteer-prompt>
-  <h3>Want to help locally?</h3>
-  <p id="volunteerPromptCopy">If you’d like to do a little more, choose any ways you could help. There’s no commitment.</p>
-  <div class="volunteer-options">
-    <button class="volunteer-chip" type="button" data-volunteer="leaflets">Deliver a few leaflets</button>
-    <button class="volunteer-chip" type="button" data-volunteer="events">Help at an event</button>
-    <button class="volunteer-chip" type="button" data-volunteer="online">Help online</button>
-    <button class="volunteer-chip" type="button" data-volunteer="poster">Display a poster</button>
-    <button class="volunteer-chip" type="button" data-volunteer="skills">Offer professional skills</button>
-  </div>
-  <div class="volunteer-done" data-volunteer-done>Thanks — we’ve noted what you’d be interested in helping with.</div>
-</div>
-</div></section>
 
 <footer>
   <div class="container">
@@ -138,8 +144,6 @@
     <div class="footer-note">Demo website concept. Joe Bloggs and Bloggs Town are fictional.</div>
   </div>
 </footer>
-
-
 <script>
 (function () {
   function initMobileMenu() {
@@ -171,7 +175,6 @@
   }
 })();
 </script>
-
 <script src="assets/js/personalisation.js?v=32"></script>
 <script src="assets/js/forms.js?v=32"></script>
 </body>
